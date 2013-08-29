@@ -47,7 +47,7 @@ i64.asDate(new Date()).as64() // 38dc3g date to base64
 i64.asGeo(-28.22).as64()      // g2     geo degrees to base64
 
 i64.config(config)            // {...}  configuration
-i64.new(config)               // new instance of i64
+i64.new(config)               // new instance factor for i64
 ```
 
 ## Default Config
