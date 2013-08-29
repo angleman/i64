@@ -43,7 +43,18 @@ i64.as64('a').asInt()         // 10     base64 to integer
 i64.asHex('ff').asInt()       // 255    hex to integer 
 i64.asDate(new Date()).as64() // 38dc3g date to base64 
 i64.asGeo(-28.22).as64()      // g2     geo degrees to base64
-i64.config()                  // { "base_year": 2010, "date_format": "ymdhis", "geo_precision": 2, "on_error": "undefined" }  defaults
+
+i64.config()                  // {...}  configuration
+```
+
+__Default Config:__
+```
+{ 
+    "base_year": 2010         // 
+  , "date_format": "ymdhis"
+  , "geo_precision": 2
+  , "on_error": "undefined" 
+}
 ```
 
 __On Error Options:__
