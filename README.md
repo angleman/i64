@@ -14,7 +14,7 @@ __Usage:__
 ```
 var i64 = require('i64');
 
-i64.as64([base64_string])         // get/set value as Base64
+i64.valueOf([base64])             // value as Numeric Base64 String, set option
 i64.asInt([integer])              // get/set value as Integer
 i64.asHex([hex_string])           // get/set value as Hex
 i64.asDate([date])                // get/set value as Date
@@ -22,9 +22,9 @@ i64.asMicrotime([microtime])      // get/set value as Microtime
 i64.asGeo([degrees, [precision]]) // get/set value as Longitude or Latitude degrees, base64 digits of precision
 i64.config([config])              // get/set configuration
 ```
-__Base64 Digits:__
+__Numeric Base64 String Digits:__
 
-As an extension of Base36 digits they are as follows:
+As an extension of Base36 digits, Numeric Base64 String digits are:
 ```
 Base64  Base10
 ------  -------
@@ -38,20 +38,20 @@ _       63       (underscore)
 __Examples:__
 
 ```
-i64.asInt(64).as64()          // _      integer to base64 conversion
-i64.as64('a').asInt()         // 10     base64 to integer conversion
-i64.asHex('ff').asInt()       // 255    hex to integer conversion
-i64.asDate(new Date()).as64() // 38dc3g date to base64 conversion
-i64.config()                  // { "base_year": 2010, "date_format": "ymdhis", "geo_precision": 2 }  defaults
+i64.asInt(64)                 // _      integer to base64
+i64.as64('a').asInt()         // 10     base64 to integer 
+i64.asHex('ff').asInt()       // 255    hex to integer 
+i64.asDate(new Date()).as64() // 38dc3g date to base64 
+i64.asGeo(-28.22).as64()      // g2     geo degrees to base64
+i64.config()                  // { "base_year": 2010, "date_format": "ymdhis", "geo_precision": 2, "on_error": "undefined" }  defaults
+```
 
-i64.asInt()       // get/set int
-i64.asHex()       // get/set hex
-i64.as64()        // get/set base64
-i64.asDate()      //
-i64.asMicrotime() //
-i64.asGeo()       //
-i64.config()      // get/set config { 'base_year', 'date_format':'ymdhisuu', geo_digits ...
+__On Error Options:__
 
+```
+"undefined" = return undefined
+"exception" = throw exception
+callback()  = call callback(method, value). method that was called, value that was off
 ```
 
 __License:__
