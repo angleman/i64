@@ -20,6 +20,7 @@ describe('i64.valueOf()', function() {
             var result = i64.valueOf('G5f2');
             should.exist(result);
             result.should.equal('G5f2');
+            i64.valueOf('0'); // reset to default state
         });
     });
 });
