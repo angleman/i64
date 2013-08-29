@@ -58,4 +58,10 @@ i64.asGeo(-28.22).as64()      // g2     geo degrees to base64
 }
 ```
 
+## Big and Fast integer handling
+
+Large integer string conversions are handled complements of [alan/clarke/int-encoder](http://github.com/alanclarke/int-encoder4).
+
+Normal integers are handled by a faster radix converter.
+
 ## License: MIT
