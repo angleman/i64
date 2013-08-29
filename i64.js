@@ -108,6 +108,9 @@ i64.prototype._intTo64Fast = function(number) {
 
 // based on: http://stackoverflow.com/questions/6213227/fastest-way-to-convert-a-number-to-radix-64-in-javascript
 i64.prototype._toIntFast = function(i64string) {
+	if (!this.isI64(i64string)) {
+		throw new I64StringError("Invalid _toIntFast() Int64String");
+	}
     var result = 0
       , alphabet = this._config.alphabet
     ;
