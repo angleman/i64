@@ -15,10 +15,30 @@ describe('asInt()', function() {
     });
 
     describe('small integer passed and returned', function() {
-        it('returns UNKNOWN', function() {
-            var result = a64.asInt(928);
-//            should.exist(result);
-//            console.log('result: ' + result + '.');
+        var result;
+        it('returns "mGW"', function() {
+            result = a64.asInt(92858);
+            should.exist(result);
+            result.should.equal('mGW');
+        });
+        it('returns "92858"', function() {
+            result = a64.asInt();
+            should.exist(result);
+            result.should.equal(92858);
+        });
+    });
+
+    describe('large integer passed and returned', function() {
+        var result;
+        it('returns "5abxVtZRda"', function() {
+            result = a64.asInt('92937450274902858');
+            should.exist(result);
+            result.should.equal('5abxVtZRda');
+        });
+        it('returns "92937450274902858"', function() {
+            result = a64.asInt();
+            should.exist(result);
+            result.should.equal('92937450274902858');
         });
     });
 });

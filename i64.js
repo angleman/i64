@@ -91,6 +91,7 @@ i64.prototype._toIntFast = function(i64string) {
 /** Main API **/
 i64.prototype.new = function(config_or_value) {
 	var result = new i64(config_or_value);
+	return result;
 }
 
 
@@ -135,7 +136,7 @@ i64.prototype.valueOf = function(i64string) {
 
 
 i64.prototype.asInt = function(intvalue) {
-	if (typeof intvalue != 'undefined') { // no parameter, return the integer value
+	if (typeof intvalue == 'undefined') { // no parameter, return the integer value
 		if (this._value.length > 4) { // large number
 			return int_encoder.decode(this._value, 10);
 		} else {
@@ -143,9 +144,9 @@ i64.prototype.asInt = function(intvalue) {
 		}
 	} else { // assign the integer value and return the Int64String
 		if (typeof intvalue == 'string') {
-			this._value = int_encoder.encode(this._value, 10);
+			this._value = int_encoder.encode(intvalue, 10);
 		} else {
-			this._value = this._toIntFast(this._value)
+			this._value = this._intTo64Fast(intvalue);
 		}
 		return this._value; // return the Int64String
 	}
