@@ -21,6 +21,7 @@ i64.asDate([date])                // get/set value as Date
 i64.asMicrotime([microtime])      // get/set value as Microtime
 i64.asGeo([degrees, [precision]]) // get/set value as Longitude or Latitude degrees, base64 digits of precision
 i64.config([config])              // get/set configuration
+i64.new(config)                   // new instance factor for i64
 ```
 
 ## Numeric Base64 String Digits
@@ -45,9 +46,6 @@ i64.as64('a').asInt()         // 10     base64 to integer
 i64.asHex('ff').asInt()       // 255    hex to integer 
 i64.asDate(new Date()).as64() // 38dc3g date to base64 
 i64.asGeo(-28.22).as64()      // g2     geo degrees to base64
-
-i64.config(config)            // {...}  configuration
-i64.new(config)               // new instance factor for i64
 ```
 
 ## Default Config
