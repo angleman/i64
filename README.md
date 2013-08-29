@@ -64,5 +64,4 @@ Large integer string conversions are handled complements of [alan/clarke/int-enc
 
 Normal integers are handled by a faster radix converter.
 
-## License
-## MIT
+## License: MIT
