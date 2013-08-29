@@ -1,5 +1,8 @@
-var util = require('util');
+var util        = require('util')
+  , int_encoder = require('int-encoder')
+;
 
+/** ERROR TYPES **/
 var I64Error = function (msg, constr) {
   Error.captureStackTrace(this, constr || this);
   this.message = msg || 'Error';
@@ -27,6 +30,7 @@ I64IntegerError.prototype.name = 'i64 Integer Error';
 
 
 
+/** INIT CODE **/
 function i64(config_or_value) {
 	this._value  = '0';
 	this.config(config_or_value);
@@ -36,48 +40,9 @@ function i64(config_or_value) {
                    //   v       v       v       v       v       v       v       v      v
 var default_alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_';
 
-i64.prototype.config = function(config_or_value) {
-	config_or_value      = config_or_value || {};
-	if (typeof config_or_value == 'string') {
-		this._value = config_or_value;
-		config_or_value = {}
-	}
-	this._config = {
-		base_year:        config_or_value.base_year        || 2010
-	  , date_format:      config_or_value.date_format      || 'ymdhis'
-	  , geo_precision:    config_or_value.geo_precision    || 2
-	  , alphabet:         config_or_value.alphabet         || default_alphabet
-	};
-} 
 
 
-
-i64.prototype.isI64 = function(i64string) {
-	var result = (typeof i64string == 'string') && (i64string == i64string.match(/^([A-Za-z0-9+/])*/g));
-	return result;
-}
-
-
-
-i64.prototype.valueOf = function(i64string) {
-	if (i64string) {
-		if (!this.isI64(i64string)) {
-			throw new I64StringError("Invalid valueOf() Int64String");
-		}
-		this._value = i64string;
-	}
-	return this._value;
-}
-
-
-
-i64.prototype.new = function(config_or_value) {
-	var result = new i64(config_or_value);
-}
-
-
-
-
+/** INTERNAL SUPPORT FUNCTIONS **/
 
 // based on: http://stackoverflow.com/questions/6213227/fastest-way-to-convert-a-number-to-radix-64-in-javascript
 i64.prototype._intTo64Fast = function(number) {
@@ -123,5 +88,71 @@ i64.prototype._toIntFast = function(i64string) {
 
 
 
+/** Main API **/
+i64.prototype.new = function(config_or_value) {
+	var result = new i64(config_or_value);
+}
+
+
+
+i64.prototype.config = function(config_or_value) {
+	config_or_value      = config_or_value || {};
+	if (typeof config_or_value == 'string') {
+		if (this.isI64(config_or_value)) {
+			this._value = config_or_value;
+		}
+		config_or_value = {};
+	}
+	this._config = {
+		base_year:        config_or_value.base_year        || 2010
+	  , date_format:      config_or_value.date_format      || 'ymdhis'
+	  , geo_precision:    config_or_value.geo_precision    || 2
+	  , alphabet:         config_or_value.alphabet         || default_alphabet
+	};
+
+	int_encoder.alphabet(this._config.alphabet);
+}
+
+
+
+i64.prototype.isI64 = function(i64string) {
+	var result = (typeof i64string == 'string') && (i64string == i64string.match(/^([A-Za-z0-9+/])*/g));
+	return result;
+}
+
+
+
+i64.prototype.valueOf = function(i64string) {
+	if (i64string) {
+		if (!this.isI64(i64string)) {
+			throw new I64StringError("Invalid valueOf() Int64String");
+		}
+		this._value = i64string;
+	}
+	return this._value;
+}
+
+
+
+i64.prototype.asInt = function(intvalue) {
+	if (typeof intvalue != 'undefined') { // no parameter, return the integer value
+		if (this._value.length > 4) { // large number
+			return int_encoder.decode(this._value, 10);
+		} else {
+			return this._toIntFast(this._value);
+		}
+	} else { // assign the integer value and return the Int64String
+		if (typeof intvalue == 'string') {
+			this._value = int_encoder.encode(this._value, 10);
+		} else {
+			this._value = this._toIntFast(this._value)
+		}
+		return this._value; // return the Int64String
+	}
+}
+
+
+
+/** EXPORT GLOBAL INSTANCE**/
 var i64GlobalInstance = new i64();
 module.exports = i64GlobalInstance; // use i64.new() factory for individual instances
