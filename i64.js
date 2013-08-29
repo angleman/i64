@@ -4,9 +4,26 @@ var I64Error = function (msg, constr) {
   Error.captureStackTrace(this, constr || this);
   this.message = msg || 'Error';
 };
-
 util.inherits(I64Error, Error);
 I64Error.prototype.name = 'i64 Error';
+
+
+
+var I64StringError = function (msg, constr) {
+  Error.captureStackTrace(this, constr || this);
+  this.message = msg || 'Error';
+};
+util.inherits(I64StringError, I64Error);
+I64StringError.prototype.name = 'i64 Int64String Error';
+
+
+
+var I64IntegerError = function (msg, constr) {
+  Error.captureStackTrace(this, constr || this);
+  this.message = msg || 'Error';
+};
+util.inherits(I64IntegerError, I64Error);
+I64IntegerError.prototype.name = 'i64 Integer Error';
 
 
 
@@ -45,36 +62,40 @@ i64.prototype.isI64 = function(i64string) {
 i64.prototype.valueOf = function(i64string) {
 	if (i64string) {
 		if (!this.isI64(i64string)) {
-			throw new I64Error("i64_invalid_valueOf_i64_string");
+			throw new I64StringError("Invalid valueOf() Int64String");
 		}
 		this._value = i64string;
 	}
 	return this._value;
 }
 
+
+
 i64.prototype.new = function(config_or_value) {
 	var result = new i64(config_or_value);
 }
 
-var a64 = new i64();
+
 
 
 
 // based on: http://stackoverflow.com/questions/6213227/fastest-way-to-convert-a-number-to-radix-64-in-javascript
 i64.prototype._intTo64fast = function(number) {
     if (isNaN(Number(number)) || number === null || number === Number.POSITIVE_INFINITY) {
-        throw new Error("i64_invalid__intTo64fast_number");
+        throw new I64IntegerError("Invalid _intTo64fast() Number");
     }
     if (number < 0) {
-        throw new I64Error("i64_invalid__intTo64fast_negative_number");
+        throw new I64IntegerError("Invalid _intTo64fast() Negative Number");
     }
 
-    var rixit; // like 'digit', only in some non-decimal radix 
-    var residual = Math.floor(number);
-    var result = '';
+    var rixit                          // like 'digit', only in some non-decimal radix 
+      , result   = ''
+      , residual = Math.floor(number)
+      , alphabet = this._config.alphabet
+    ;
     while (true) {
-        rixit = residual % 64
-        result = this._config.alphabet.charAt(rixit) + result;
+        rixit    = residual % 64;
+        result   = alphabet.charAt(rixit) + result;
         residual = Math.floor(residual / 64);
         if (residual == 0) {
             break;
@@ -83,23 +104,21 @@ i64.prototype._intTo64fast = function(number) {
     return result;
 }
 
-// based on: http://stackoverflow.com/questions/6213227/fastest-way-to-convert-a-number-to-radix-64-in-javascript
-intWith64 = {
-    _Rixits :
-    "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_", // more human readable than RFC1113
-    to64 : function(number) {
-    },
 
-    toInt : function(rixits) {
-        var result = 0;
-        rixits = rixits.split('');
-        for (e in rixits) {
-            result = (result * 64) + this._Rixits.indexOf(rixits[e]);
-        }
-        return result;
+
+// based on: http://stackoverflow.com/questions/6213227/fastest-way-to-convert-a-number-to-radix-64-in-javascript
+i64.prototype._toIntfast = function(i64string) {
+    var result = 0
+      , alphabet = this._config.alphabet
+    ;
+    i64string = i64string.split('');
+    for (var e in i64string) {
+        result = (result * 64) + alphabet.indexOf(i64string[e]);
     }
+    return result;
 }
 
 
-module.exports = a64;
 
+var i64GlobalInstance = new i64();
+module.exports = i64GlobalInstance; // use i64.new() factory for individual instances
