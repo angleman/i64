@@ -13,7 +13,8 @@ npm install i64
 ```
 var i64 = require('i64');
 
-i64.valueOf([base64])             // value as Numeric Base64 String, set option
+i64.valueOf([int64_string])       // value as Numeric Base64 String, set option
+i64.isI64(int64_string)           // true if a valid int64_string is passed
 i64.asInt([integer])              // get/set value as Integer
 i64.asHex([hex_string])           // get/set value as Hex
 i64.asDate([date])                // get/set value as Date
@@ -45,26 +46,18 @@ i64.asHex('ff').asInt()       // 255    hex to integer
 i64.asDate(new Date()).as64() // 38dc3g date to base64 
 i64.asGeo(-28.22).as64()      // g2     geo degrees to base64
 
-i64.config()                  // {...}  configuration
+i64.config(config)            // {...}  configuration
+i64.new(config)               // new instance of i64
 ```
 
 ## Default Config
 
 ```
 { 
-    "base_year": 2010         // 
-  , "date_format": "ymdhis"
-  , "geo_precision": 2
-  , "on_error": "undefined" 
+    "base_year":        2010      // to help be human readable. ex: year 0=2010, 1=2011, etc
+  , "date_format":      'ymdhis'  // one character for each date granularity
+  , "geo_precision":    2         // approximately 10km (a little more than one decimal point of precision)
 }
-```
-
-## On Error Options
-
-```
-"undefined" = return undefined
-"exception" = throw exception
-callback()  = call callback(method, value). method that was called, value that was off
 ```
 
 ## License: MIT
