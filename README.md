@@ -1,15 +1,14 @@
-i64
-===
+# i64 [![NPM version](https://badge.fury.io/js/i64.png)](http://badge.fury.io/js/i64) [![Build Status](https://travis-ci.org/angleman/i64.png)](https://travis-ci.org/angleman/geos-major) [![Dependency Status](https://gemnasium.com/angleman/i64.png)](https://gemnasium.com/angleman/i64) 
 
 URL safe base64 integer conversion tools
 
-__Install:__
+## Install
 
 ```
 npm install i64
 ```
 
-__Usage:__
+## Usage
 
 ```
 var i64 = require('i64');
@@ -22,9 +21,11 @@ i64.asMicrotime([microtime])      // get/set value as Microtime
 i64.asGeo([degrees, [precision]]) // get/set value as Longitude or Latitude degrees, base64 digits of precision
 i64.config([config])              // get/set configuration
 ```
-__Numeric Base64 String Digits:__
+
+## Numeric Base64 String Digits
 
 As an extension of Base36 digits, Numeric Base64 String digits are:
+
 ```
 Base64  Base10
 ------  -------
@@ -35,7 +36,7 @@ A..Z    26 to 61
 _       63       (underscore)
 ```
 
-__Examples:__
+## Examples
 
 ```
 i64.asInt(64)                 // _      integer to base64
@@ -47,7 +48,8 @@ i64.asGeo(-28.22).as64()      // g2     geo degrees to base64
 i64.config()                  // {...}  configuration
 ```
 
-__Default Config:__
+## Default Config
+
 ```
 { 
     "base_year": 2010         // 
@@ -57,7 +59,7 @@ __Default Config:__
 }
 ```
 
-__On Error Options:__
+## On Error Options
 
 ```
 "undefined" = return undefined
@@ -65,6 +67,4 @@ __On Error Options:__
 callback()  = call callback(method, value). method that was called, value that was off
 ```
 
-__License:__
-
-__MIT__
+## License: MIT
