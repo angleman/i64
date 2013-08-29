@@ -1,6 +1,6 @@
 {
   "name": "i64",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "URL safe base64 integer conversion tools",
   "main": "i64.js",
   "scripts": {
