@@ -80,7 +80,7 @@ i64.prototype.new = function(config_or_value) {
 
 
 // based on: http://stackoverflow.com/questions/6213227/fastest-way-to-convert-a-number-to-radix-64-in-javascript
-i64.prototype._intTo64fast = function(number) {
+i64.prototype._intTo64Fast = function(number) {
     if (isNaN(Number(number)) || number === null || number === Number.POSITIVE_INFINITY) {
         throw new I64IntegerError("Invalid _intTo64fast() Number");
     }
@@ -107,7 +107,7 @@ i64.prototype._intTo64fast = function(number) {
 
 
 // based on: http://stackoverflow.com/questions/6213227/fastest-way-to-convert-a-number-to-radix-64-in-javascript
-i64.prototype._toIntfast = function(i64string) {
+i64.prototype._toIntFast = function(i64string) {
     var result = 0
       , alphabet = this._config.alphabet
     ;
