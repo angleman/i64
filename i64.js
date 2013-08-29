@@ -1,3 +1,15 @@
+var util = require('util');
+
+var I64Error = function (msg, constr) {
+  Error.captureStackTrace(this, constr || this);
+  this.message = msg || 'Error';
+};
+
+util.inherits(I64Error, Error);
+I64Error.prototype.name = 'i64 Error';
+
+
+
 function i64(config_or_value) {
 	this._value  = '0';
 	this.config(config_or_value);
@@ -33,7 +45,7 @@ i64.prototype.isI64 = function(i64string) {
 i64.prototype.valueOf = function(i64string) {
 	if (i64string) {
 		if (!this.isI64(i64string)) {
-			throw new UserException("i64_invalid_valueOf_i64_string");
+			throw new I64Error("i64_invalid_valueOf_i64_string");
 		}
 		this._value = i64string;
 	}
@@ -51,10 +63,10 @@ var a64 = new i64();
 // based on: http://stackoverflow.com/questions/6213227/fastest-way-to-convert-a-number-to-radix-64-in-javascript
 i64.prototype._intTo64fast = function(number) {
     if (isNaN(Number(number)) || number === null || number === Number.POSITIVE_INFINITY) {
-        throw new UserException("i64_invalid__intTo64fast_number");
+        throw new Error("i64_invalid__intTo64fast_number");
     }
     if (number < 0) {
-        throw new UserException("i64_invalid__intTo64fast_negative_number");
+        throw new I64Error("i64_invalid__intTo64fast_negative_number");
     }
 
     var rixit; // like 'digit', only in some non-decimal radix 
