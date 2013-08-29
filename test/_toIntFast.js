@@ -1,13 +1,12 @@
 // test/main.js
-var should = require('should');
 var i64    = require('../i64.js');
 
-describe('_intTo64Fast()', function() {
+describe('_toIntFast()', function() {
     describe('no arguments', function() {
         it('throws exception', function() {
             var failed = false;
             try {
-                var result = i64._intTo64Fast();
+                var result = i64._toIntFast();
             } catch(err) {
                 failed = true;
             }
@@ -19,7 +18,7 @@ describe('_intTo64Fast()', function() {
         it('throws exception', function() {
             var failed = false;
             try {
-                var result = i64._intTo64Fast(-22);
+                var result = i64._toIntFast(-22);
             } catch(err) {
                 failed = true;
             }
@@ -29,7 +28,7 @@ describe('_intTo64Fast()', function() {
 
     describe('valid integer', function() {
         it('returns cR', function() {
-            var result = i64._intTo64Fast(821);
+            var result = i64._toIntFast(821);
             result.should.equal('cR');
         });
     });

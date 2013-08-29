@@ -2,7 +2,7 @@
 var should = require('should');
 var i64    = require('../i64.js');
 
-describe('i64.isI64()', function() {
+describe('isI64()', function() {
     describe('no arguments', function() {
         it('returns false', function() {
             var result = i64.isI64();
@@ -10,11 +10,7 @@ describe('i64.isI64()', function() {
             result.should.equal(false);
         });
     });
-});
 
-
-
-describe('i64.isI64()', function() {
     describe('base64 string passed', function() {
         it('returns true', function() {
             var result = i64.isI64('Z3');
@@ -22,11 +18,7 @@ describe('i64.isI64()', function() {
             result.should.equal(true);
         });
     });
-});
 
-
-
-describe('i64.isI64()', function() {
     describe('non base64 string passed', function() {
         it('returns false', function() {
             var result = i64.isI64('hi mom');
@@ -34,11 +26,7 @@ describe('i64.isI64()', function() {
             result.should.equal(false);
         });
     });
-});
 
-
-
-describe('i64.isI64()', function() {
     describe('integer passed', function() {
         it('returns false', function() {
             var result = i64.isI64(15);
@@ -46,11 +34,7 @@ describe('i64.isI64()', function() {
             result.should.equal(false);
         });
     });
-});
 
-
-
-describe('i64.isI64()', function() {
     describe('base64 encoded string passed', function() {
         it('returns false', function() {
             var result = i64.isI64('AAA==');
@@ -59,5 +43,7 @@ describe('i64.isI64()', function() {
         });
     });
 });
+
+
 
 
