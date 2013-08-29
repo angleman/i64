@@ -1,0 +1,31 @@
+{
+  "name": "i64",
+  "version": "0.1.0",
+  "description": "URL safe base64 integer conversion tools",
+  "main": "i64.js",
+  "scripts": {
+    "test": "mocha test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/angleman/i64.git"
+  },
+  "keywords": [
+    "url",
+    "base64",
+    "hex",
+    "integer",
+    "tools",
+    "conversion"
+  ],
+  "author": "angleman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/angleman/i64/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+     "mocha": "~1.12.0",
+     "should": "~1.2.2"
+   }
+}
