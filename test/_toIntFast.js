@@ -14,7 +14,7 @@ describe('_toIntFast()', function() {
         });
     });
 
-    describe('negative number', function() {
+    describe('non base64 string passed', function() {
         it('throws exception', function() {
             var failed = false;
             try {
@@ -26,10 +26,10 @@ describe('_toIntFast()', function() {
         });
     });
 
-    describe('valid integer', function() {
-        it('returns cR', function() {
-            var result = i64._toIntFast(821);
-            result.should.equal('cR');
+    describe('base64 string passed', function() {
+        it('returns 821', function() {
+            var result = i64._toIntFast('cR');
+            result.should.equal(821);
         });
     });
 });
