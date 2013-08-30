@@ -1,5 +1,8 @@
 var util        = require('util')
   , int_encoder = require('int-encoder')
+  , microtime   = require('microtime')
+  , Validator   = require('validator').Validator
+  , validator   = new Validator()
 ;
 
 /** ERROR TYPES **/
@@ -87,10 +90,9 @@ i64.prototype._toIntFast = function(i64string) {
 }
 
 
-i64.prototype._dateToBase64 = function(date, options) {
+i64.prototype._dateToBase64 = function(date, options, asMicrotime) {
 	options       = options || this._config;
     var base_year = (options.base_year) ? options.base_year : 2010
-      , date      = (date)              ? date              : new Date()
       , dat       = new Date(date)
       , alphabet  = this._config.alphabet
       , year      = alphabet.charAt(dat.getFullYear() - base_year)
@@ -111,6 +113,7 @@ i64.prototype._dateToBase64 = function(date, options) {
 
 
 
+
 i64.prototype._base64ToDate = function(base64, options) {
 	options       = options || this._config;
     var base_year = (options.base_year) ? options.base_year : 2010
@@ -125,6 +128,65 @@ i64.prototype._base64ToDate = function(base64, options) {
       , date      = new Date(year, month, day, hours, minutes, seconds, millis)
     ;
     return date;
+}
+
+
+
+i64.prototype._microtimeToBase64 = function(microvalue, options) {
+	var seconds, micro;
+	if (!util.isArray(microvalue)) {
+		try {
+			validator.check(microvalue).isInt();
+			seconds = Math.floor(microvalue / 1000000);
+			micro   = microvalue - (seconds * 1000000);
+		} catch(err) { // assume floating point
+			seconds = Math.floor(microvalue);
+			micro   = Math.floor((microvalue - seconds) * 1000000);
+		}
+		microvalue = [seconds, micro];
+	}
+
+	options       = options || this._config;
+    var base_year = (options.base_year) ? options.base_year : 2010
+      , date      = microvalue[0] * 1000
+      , dat       = new Date(date)
+      , alphabet  = this._config.alphabet
+      , year      = alphabet.charAt(dat.getFullYear() - base_year)
+      , month     = alphabet.charAt(dat.getMonth())
+      , day       = alphabet.charAt(dat.getDate())
+      , hour      = alphabet.charAt(dat.getHours())
+      , minute    = alphabet.charAt(dat.getMinutes())
+      , second    = alphabet.charAt(dat.getSeconds())
+      , millis    = '0000' + this._intTo64Fast(microvalue[1])
+      , result    = year + month + day + hour + minute + second + millis.substr(millis.length - 4, 4)
+    ;
+    return result;
+}
+
+
+
+i64.prototype._base64ToMicrotime = function(base64, options) {
+	options       = options || this._config;
+    var base_year = (options.base_year) ? options.base_year : 2010
+      , alphabet  = this._config.alphabet
+      , year      = (base64.length > 0) ? alphabet.indexOf(base64[0]) + base_year : base_year
+      , month     = (base64.length > 1) ? alphabet.indexOf(base64[1]) : 1
+      , day       = (base64.length > 2) ? alphabet.indexOf(base64[2]) : 1
+      , hours     = (base64.length > 3) ? alphabet.indexOf(base64[3]) : 0
+      , minutes   = (base64.length > 4) ? alphabet.indexOf(base64[4]) : 0
+      , seconds   = (base64.length > 5) ? alphabet.indexOf(base64[5]) : 0
+      , millis    = (base64.length > 9) ? alphabet.indexOf(base64[6]) * 262144 
+      		+ alphabet.indexOf(base64[7]) * 4096 
+      		+ alphabet.indexOf(base64[8]) * 64 
+      		+ alphabet.indexOf(base64[9])
+      		: 0
+      , date      = new Date(year, month, day, hours, minutes, seconds, 0)
+      , result    = [
+      		Math.floor(date.valueOf() / 1000)
+      	  , millis
+      ]
+    ;
+    return result; // returns in microtime.nowStruct() form
 }
 
 
@@ -248,6 +310,18 @@ i64.prototype.asDate = function(datevalue, options) {
 
 
 
+i64.prototype.asMicrotime = function(datevalue, options) {
+	options = options || this._config;
+	if (typeof datevalue == 'undefined') { // no parameter, return the date value
+		return this._base64ToMicrotime(this._value, options);
+	} else { // assign the microtime value
+		this._value = this._microtimeToBase64(datevalue, options);
+		return this;
+	}
+}
+
+
+
 i64.prototype.asGeo = function(degrees, options) {
 	options = options || this._config;
 	if (typeof degrees == 'undefined') { // no parameter, return the geo value
@@ -273,7 +347,7 @@ i64.prototype.asGeoSet = function(geoset, options, asJson) {
 		  	} : [latitude, longitude]
 		 ;
 		return result;
-	} else { // assign the degrees value
+	} else { // assign the point values
 		var geo1      = geoset.latitude  || geoset[0]
 		  , geo2      = geoset.longitude || geoset[1]
 		  , latitude  = this._degreesToBase64(geo1, options)
