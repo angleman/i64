@@ -287,7 +287,7 @@ i64.prototype.asGeoSet = function(geoset, options, asJson) {
 
 
 i64.prototype.asGeoJson = function(geoset, options, asJson) {
-	return this._asGeoSet(geoset, options, true);
+	return this.asGeoSet(geoset, options, true);
 }
 
 /** TODO:

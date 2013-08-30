@@ -28,12 +28,22 @@ i64.new(config)                   // new instance factory
 ## Examples
 
 ```
-i64.asInt(64).valueOf()                 // _        integer to base64
-i64.valueOf('a').asInt()                // 10       base64 to integer 
-i64.asHex('ff').asInt()                 // 255      hex to integer
+i64.asInt(64).valueOf()                 // _         integer to Base64 Integers String (BAS)
+
+i64.valueOf('a').asInt()                // 10        BAS to integer 
+
+i64.asHex('ff').asInt()                 // 255       hexidecimal to integer
+
 date = new Date(2013,08,29,20,12,15,0)
-i64.asDate(date).valueOf()              // 38tkcf00 date to int64_string 
-i64.asGeo(-71.5653).valueOf()           // ji       ~10km accuracy with default 2 digit precision
+i64.asDate(date).valueOf()              // 38tkcf00  date to BAS 
+
+i64.asGeo(-71.5653).valueOf()           // ji        ~10km accuracy with default 2 digit precision
+
+point = [43.4108, -71.5653]
+i64.asGeoSet(point).valueOf()           // DKji     
+
+point = latitude: 43.4108, longitude:-71.5653}
+i64.asGeoJson(point).valueOf()          // DKji     
 ```
 
 ## Big and Fast number handling
@@ -44,7 +54,7 @@ Normal integers are handled by a faster radix converter.
 
 ## Base64 Integer String digits
 
-As an extension of Base36 digits, Numeric Base64 String digits are: 0..9a..zA..Z-_
+As an extension of Base36 digits, BAS digits are: 0..9a..zA..Z-_
 
 ## Default Config
 
