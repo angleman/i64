@@ -15,7 +15,11 @@
     "url",
     "base64",
     "hex",
+    "hexidecimal"
     "integer",
+    "date",
+    "time",
+    "timestamp",
     "tools",
     "conversion"
   ],
