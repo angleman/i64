@@ -1,4 +1,3 @@
-3_
 # TOC
    - [_intTo64Fast()](#_intto64fast)
      - [no arguments](#_intto64fast-no-arguments)
@@ -213,7 +212,6 @@ returns 255.
 
 ```js
 var result = a64.asHex('ff');
-console.log(result);
 should.exist(result);
 
 result = a64.asInt();
