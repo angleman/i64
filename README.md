@@ -48,8 +48,9 @@ As an extension of Base36 digits, Numeric Base64 String digits are: 0..9a..zA..Z
 
 ```
 { 
-   base_year: 2010,
-   alphabet:  '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_'
+   base_year:      2010,
+   alphabet:       '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_',
+   geo_precision": 2 // ~10km (a little more than one decimal point of precision). Values: 1 to 4
 }
 ```
 

@@ -267,7 +267,6 @@ i64.asGeo([degrees, [precision]]) // get/set value as Longitude or Latitude degr
 i64.asGeo(-28.22).as64()      // g2     geo degrees to base64
 
     "base_year":        2010      // to help be human readable. ex: year 0=2010, 1=2011, etc
-  , "geo_precision":    2         // approximately 10km (a little more than one decimal point of precision)
 
 **/
 
