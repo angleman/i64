@@ -17,6 +17,7 @@ i64.valueOf([int64_string])       // value as Numeric Base64 String, set option
 i64.isI64(int64_string)           // true if a valid int64_string is passed
 i64.asInt([integer])              // get/set value as Integer
 i64.asHex([hex_string])           // get/set value as Hex
+i64.asDate([date])                // get/set value as Date
 i64.config([config])              // get/set configuration
 i64.new(config)                   // new instance factory
 ```
@@ -38,9 +39,10 @@ _       63       (underscore)
 ## Examples
 
 ```
-i64.asInt(64)                 // _      integer to base64
-i64.as64('a').asInt()         // 10     base64 to integer 
-i64.asHex('ff').asInt()       // 255    hex to integer 
+echo i64.asInt(64)                      // _      integer to base64
+i64.valueOf('a'); echo i64.asInt()      // 10     base64 to integer 
+i64.asHex('ff');  echo i64.asInt()      // 255    hex to integer 
+i64.asDate(new Date()); echo i64.as64() // 38dc3g date to int64_string 
 ```
 
 ## Default Config
