@@ -154,6 +154,17 @@ i64.prototype.asInt = function(intvalue) {
 
 
 
+i64.prototype.asHex = function(hexvalue) {
+	if (typeof hexvalue == 'undefined') { // no parameter, return the integer value
+		return int_encoder.decode(this._value, 16);
+	} else { // assign the integer value and return the Int64String
+		this._value = int_encoder.encode(hexvalue, 16);
+		return this._value; // return the Int64String
+	}
+}
+
+
+
 /** EXPORT GLOBAL INSTANCE**/
 var i64GlobalInstance = new i64();
 module.exports = i64GlobalInstance; // use i64.new() factory for individual instances
