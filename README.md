@@ -16,7 +16,7 @@ var i64 = require('i64');
 i64.valueOf([int64_string])       // value as Numeric Base64 String, set option
 i64.isI64(int64_string)           // true if a valid int64_string is passed
 i64.asInt([integer])              // get/set value as Integer
-i64.asHex([hex_string])           // get/set value as Hex
+i64.asHex([hex_string])           // get/set value as Hexidecimal
 i64.asDate([date])                // get/set value as Date
 i64.config([config])              // get/set configuration
 i64.new(config)                   // new instance factory
@@ -25,13 +25,14 @@ i64.new(config)                   // new instance factory
 ## Examples
 
 ```
-echo i64.asInt(64)                      // _      integer to base64
-i64.valueOf('a'); echo i64.asInt()      // 10     base64 to integer 
-i64.asHex('ff');  echo i64.asInt()      // 255    hex to integer 
-i64.asDate(new Date()); echo i64.as64() // 38dc3g date to int64_string 
+i64.asInt(64).valueOf()                 // _        integer to base64
+i64.valueOf('a').asInt()                // 10       base64 to integer 
+i64.asHex('ff').asInt()                 // 255      hex to integer
+date = new Date(2013,08,29,20,12,15,0)
+i64.asDate(date).valueOf()              // 38tkcf00 date to int64_string 
 ```
 
-## Big and Fast integer handling
+## Big and Fast number handling
 
 Large integer string conversions are handled complements of [alan/clarke/int-encoder](http://github.com/alanclarke/int-encoder).
 
@@ -39,35 +40,15 @@ Normal integers are handled by a faster radix converter.
 
 ## Numeric Base64 String Digits
 
-As an extension of Base36 digits, Numeric Base64 String digits are:
-
-```
-Base64  Base10
-------  -------
-0..9    0 to 9
-a..z    10 to 25
-A..Z    26 to 61
--       62       (dash)
-_       63       (underscore)
-```
+As an extension of Base36 digits, Numeric Base64 String digits are: 0..9a..zA..Z-_
 
 ## Default Config
 
 ```
 { 
-   // future use: part of asDate, asMicrotime and asGeo
+   base_year: 2010,
+   alphabet:  '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_'
 }
-```
-
-## upcoming 0.3.x changes
-
-- add asDate()
-- add asMicrotime()
-- add asGeo()
-- asTYPE() functions will return the value as TYPE as is currently done
-- asTYPE(value) will change to return 'this', which will enabling chaining like:
-```
-i64.valueOf('a').asInt()
 ```
 
 ## License: MIT
