@@ -1,6 +1,6 @@
 {
   "name": "i64",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "URL safe base64 integers and conversion tools",
   "main": "i64.js",
   "scripts": {
@@ -20,6 +20,10 @@
     "date",
     "time",
     "timestamp",
+    "geo",
+    "degrees",
+    "longitude",
+    "latitude",
     "tools",
     "conversion"
   ],
