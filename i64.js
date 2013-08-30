@@ -87,8 +87,78 @@ i64.prototype._toIntFast = function(i64string) {
 }
 
 
+i64.prototype._dateToBase64 = function(date, options) {
+	options       = options || this._config;
+    var base_year = (options.base_year) ? options.base_year : 2010
+      , date      = (date)              ? date              : new Date()
+      , dat       = new Date(date)
+      , alphabet  = this._config.alphabet
+      , year      = alphabet.charAt(dat.getFullYear() - base_year)
+      , month     = alphabet.charAt(dat.getMonth())
+      , day       = alphabet.charAt(dat.getDate())
+      , hour      = alphabet.charAt(dat.getHours())
+      , minute    = alphabet.charAt(dat.getMinutes())
+      , second    = alphabet.charAt(dat.getSeconds())
+      , millis    = date.getMilliseconds()
+      , millis1   = Math.floor(millis / 64)
+      , millis2   = millis - (millis1 * 64)
+      , millisa   = alphabet.charAt(millis1)
+      , millisb   = alphabet.charAt(millis2)
+      , result    = year + month + day + hour + minute + second + millisa + millisb
+    ;
+    return result;
+}
+
+
+
+i64.prototype._base64ToDate = function(base64, options) {
+	options       = options || this._config;
+    var base_year = (options.base_year) ? options.base_year : 2010
+      , alphabet  = this._config.alphabet
+      , year      = (base64.length > 0) ? alphabet.indexOf(base64[0]) + base_year : base_year
+      , month     = (base64.length > 1) ? alphabet.indexOf(base64[1]) : 1
+      , day       = (base64.length > 2) ? alphabet.indexOf(base64[2]) : 1
+      , hours     = (base64.length > 3) ? alphabet.indexOf(base64[3]) : 0
+      , minutes   = (base64.length > 4) ? alphabet.indexOf(base64[4]) : 0
+      , seconds   = (base64.length > 5) ? alphabet.indexOf(base64[5]) : 0
+      , millis    = (base64.length > 7) ? alphabet.indexOf(base64[6]) * 64 + alphabet.indexOf(base64[7]) : 0
+      , date      = new Date(year, month, day, hours, minutes, seconds, millis)
+    ;
+    return date;
+}
+
+
+
+i64.prototype._base64ToDegrees = function(base64) {
+    var digits  = base64.length
+      , intval  = this._toIntFast(base64)
+      , base    = [0, 64, 4096, 262144, 16777216]
+      , degrees = (intval / base[digits] * 360) - 180.0
+    ;
+    return degrees;
+}
+
+
+
+i64.prototype._degreesToBase64 = function(degrees, options) {
+	options    = options || this._config;
+	var geop   = options.geo_precision
+      , digits = (geop && (geop > 0) && (geop < 5)) ? geop : 2
+      , base   = [0, 64, 4096, 262144, 16777216]
+      , intval = Math.round((degrees + 180) * base[digits] / 360)
+      , base64 = this._intTo64Fast(intval)
+    ;
+    base64 = '0000' + base64;
+    base64 = base64.substr(base64.length - digits, digits);
+    return base64;
+}
+
+
+
+
 
 /** Main API **/
+
 i64.prototype.new = function(config_or_value) {
 	var result = new i64(config_or_value);
 	return result;
@@ -106,7 +176,6 @@ i64.prototype.config = function(config_or_value) {
 	}
 	this._config = {
 		base_year:        config_or_value.base_year        || 2010
-	  , date_format:      config_or_value.date_format      || 'ymdhis'
 	  , geo_precision:    config_or_value.geo_precision    || 2
 	  , alphabet:         config_or_value.alphabet         || default_alphabet
 	};
@@ -167,54 +236,24 @@ i64.prototype.asHex = function(hexvalue) {
 
 
 
-i64.prototype._dateToBase64 = function(date, options) {
-	options       = options || this._config;
-    var base_year = (options.base_year) ? options.base_year : 2010
-      , date      = (date)              ? date              : new Date()
-      , dat       = new Date(date)
-      , alphabet  = this._config.alphabet
-      , year      = alphabet.charAt(dat.getFullYear() - base_year)
-      , month     = alphabet.charAt(dat.getMonth())
-      , day       = alphabet.charAt(dat.getDate())
-      , hour      = alphabet.charAt(dat.getHours())
-      , minute    = alphabet.charAt(dat.getMinutes())
-      , second    = alphabet.charAt(dat.getSeconds())
-      , millis    = date.getMilliseconds()
-      , millis1   = Math.floor(millis / 64)
-      , millis2   = millis - (millis1 * 64)
-      , millisa   = alphabet.charAt(millis1)
-      , millisb   = alphabet.charAt(millis2)
-      , result    = year + month + day + hour + minute + second + millisa + millisb
-    ;
-    return result;
-}
-
-
-
-i64.prototype._base64ToDate = function(base64, options) {
-	options       = options || this._config;
-    var base_year = (options.base_year) ? options.base_year : 2010
-      , alphabet  = this._config.alphabet
-      , year      = (base64.length > 0) ? alphabet.indexOf(base64[0]) + base_year : base_year
-      , month     = (base64.length > 1) ? alphabet.indexOf(base64[1]) : 1
-      , day       = (base64.length > 2) ? alphabet.indexOf(base64[2]) : 1
-      , hours     = (base64.length > 3) ? alphabet.indexOf(base64[3]) : 0
-      , minutes   = (base64.length > 4) ? alphabet.indexOf(base64[4]) : 0
-      , seconds   = (base64.length > 5) ? alphabet.indexOf(base64[5]) : 0
-      , millis    = (base64.length > 7) ? alphabet.indexOf(base64[6]) * 64 + alphabet.indexOf(base64[7]) : 0
-      , date      = new Date(year, month, day, hours, minutes, seconds, millis)
-    ;
-    return date;
-}
-
-
-
 i64.prototype.asDate = function(datevalue, options) {
 	options = options || this._config;
 	if (typeof datevalue == 'undefined') { // no parameter, return the datevalue value
 		return this._base64ToDate(this._value, options);
 	} else { // assign the date value
 		this._value = this._dateToBase64(datevalue, options);
+		return this;
+	}
+}
+
+
+
+i64.prototype.asGeo = function(degrees, options) {
+	options = options || this._config;
+	if (typeof degrees == 'undefined') { // no parameter, return the datevalue value
+		return this._base64ToDegrees(this._value, options);
+	} else { // assign the degrees value
+		this._value = this._degreesToBase64(degrees, options);
 		return this;
 	}
 }
