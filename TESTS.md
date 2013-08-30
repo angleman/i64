@@ -1,5 +1,3 @@
-38tkcf00
-2013-09-30T02:12:15.000Z
 # TOC
    - [_intTo64Fast()](#_intto64fast)
      - [no arguments](#_intto64fast-no-arguments)
@@ -124,7 +122,6 @@ var date = new Date(2013, 08, 29, 20, 12, 15, 0);
 result = a64.asDate(date);
 should.exist(result);
 result = a64.valueOf();
-console.log(result);
 result.should.equal('38tkcf00');
 ```
 
@@ -134,7 +131,6 @@ returns "2013-09-30T02:12:15.000Z".
 result = a64.asDate();
 should.exist(result);
 result = result.toISOString();
-console.log(result);
 result.should.equal('2013-09-30T02:12:15.000Z');
 ```
 
