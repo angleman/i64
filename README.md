@@ -59,4 +59,10 @@ Large integer string conversions are handled complements of [alan/clarke/int-enc
 
 Normal integers are handled by a faster radix converter.
 
+## 0.3.x changes
+
+asTYPE() functions will return the value as expected
+asTYPE(value) will return 'this' enabling chaining, like:
+i64.valueOf('a').asInt()
+
 ## License: MIT
