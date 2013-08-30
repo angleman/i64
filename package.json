@@ -1,6 +1,6 @@
 {
   "name": "i64",
-  "version": "0.4.2", 
+  "version": "0.4.3", 
   "description": "URL safe Base64 Integer Strings (BAS) and conversion tools. Supports both fast conversions for regular integers and large integer strings. Assists with compression as fewer base 64 digits are needed to represent larger integers than base 10 digits. Unlike RFC-3548 Base 64 encodings, readability of BAS is improved for small integers by using an alphabet that extends base-converter",
   "main": "i64.js",
   "scripts": {
@@ -37,7 +37,7 @@
     "node" : ">=0.8.0" 
   },
   "dependencies": {
-    "microtime": "~0.4.0",
+    "microtime": "~0.3.3",
     "validator": "~1.5.0",
     "int-encoder": "~0.1.4"
     },
