@@ -15,12 +15,19 @@ describe('asDate()', function() {
             result = a64.valueOf();
             result.should.equal('38tkcf00');
         });
+    });
 
-        it('returns "2013-09-30T02:12:15.000Z"', function() {
+
+    describe('current date', function() {
+        var date = new Date();
+        it(' returns "' + date.valueOf() + '"', function() {
+            result = a64.asDate(date);
+            should.exist(result);
             result = a64.asDate();
             should.exist(result);
-            result = result.toISOString();
-            result.should.equal('2013-09-30T02:12:15.000Z');
+            result = result.valueOf()
+            result.should.equal(date.valueOf());
         });
     });
+
 });
