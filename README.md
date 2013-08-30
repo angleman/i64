@@ -64,8 +64,8 @@ Normal integers are handled by a faster radix converter.
 - add asDate()
 - add asMicrotime()
 - add asGeo()
-- asTYPE() functions will return the value as expected
-- asTYPE(value) will return 'this' enabling chaining, like:
+- asTYPE() functions will return the value as TYPE as is currently done
+- asTYPE(value) will change to return 'this', which will enabling chaining like:
 ```
 i64.valueOf('a').asInt()
 ```
