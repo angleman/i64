@@ -4,7 +4,8 @@
   "description": "URL safe base64 integers and conversion tools",
   "main": "i64.js",
   "scripts": {
-    "test": "mocha -R list test/*.js"
+    "test": "mocha -R list test/*.js",
+    "TESTS.md": "mocha -R markdown test/*.js > TESTS.md"
   },
   "repository": {
     "type": "git",
