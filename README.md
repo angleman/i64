@@ -19,6 +19,8 @@ i64.asInt([integer])              // get/set value as Integer
 i64.asHex([hex_string])           // get/set value as Hexidecimal
 i64.asDate([date])                // get/set value as Date
 i64.asGeo([degrees])              // get/set value as Degrees (+/- 180.0)
+i64.asGeoSet([geoset])            // get/set value as [longitude, latitude]
+i64.asGeoJson([geojson])          // get/set value as {longitude: value, latitude: value}
 i64.config([config])              // get/set configuration
 i64.new(config)                   // new instance factory
 ```
