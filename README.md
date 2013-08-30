@@ -22,6 +22,21 @@ i64.config([config])              // get/set configuration
 i64.new(config)                   // new instance factory
 ```
 
+## Examples
+
+```
+echo i64.asInt(64)                      // _      integer to base64
+i64.valueOf('a'); echo i64.asInt()      // 10     base64 to integer 
+i64.asHex('ff');  echo i64.asInt()      // 255    hex to integer 
+i64.asDate(new Date()); echo i64.as64() // 38dc3g date to int64_string 
+```
+
+## Big and Fast integer handling
+
+Large integer string conversions are handled complements of [alan/clarke/int-encoder](http://github.com/alanclarke/int-encoder).
+
+Normal integers are handled by a faster radix converter.
+
 ## Numeric Base64 String Digits
 
 As an extension of Base36 digits, Numeric Base64 String digits are:
@@ -36,15 +51,6 @@ A..Z    26 to 61
 _       63       (underscore)
 ```
 
-## Examples
-
-```
-echo i64.asInt(64)                      // _      integer to base64
-i64.valueOf('a'); echo i64.asInt()      // 10     base64 to integer 
-i64.asHex('ff');  echo i64.asInt()      // 255    hex to integer 
-i64.asDate(new Date()); echo i64.as64() // 38dc3g date to int64_string 
-```
-
 ## Default Config
 
 ```
@@ -52,12 +58,6 @@ i64.asDate(new Date()); echo i64.as64() // 38dc3g date to int64_string
    // future use: part of asDate, asMicrotime and asGeo
 }
 ```
-
-## Big and Fast integer handling
-
-Large integer string conversions are handled complements of [alan/clarke/int-encoder](http://github.com/alanclarke/int-encoder).
-
-Normal integers are handled by a faster radix converter.
 
 ## upcoming 0.3.x changes
 
