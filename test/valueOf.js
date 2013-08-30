@@ -15,9 +15,12 @@ describe('valueOf()', function() {
     });
 
     describe('argument passed', function() {
-        it('returns G5f2', function() {
-            var result = a64.valueOf('G5f2');
+        var result;
+        it('returns "this" and G5f2', function() {
+            result = a64.valueOf('G5f2');
             should.exist(result);
+
+            result = a64.valueOf('G5f2').valueOf();
             result.should.equal('G5f2');
         });
     });

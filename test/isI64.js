@@ -14,7 +14,7 @@ describe('isI64()', function() {
         });
     });
 
-    describe('non base64 string passed', function() {
+    describe('non base64 string', function() {
         it('returns false', function() {
             var result = a64.isI64('hi mom');
             should.exist(result);
@@ -30,7 +30,7 @@ describe('isI64()', function() {
         });
     });
 
-    describe('base64 encoded string passed', function() {
+    describe('base64 encoded string', function() {
         it('returns false', function() {
             var result = a64.isI64('AAA==');
             should.exist(result);
@@ -38,7 +38,7 @@ describe('isI64()', function() {
         });
     });
 
-    describe('base64 string passed', function() {
+    describe('base64 string', function() {
         it('returns true', function() {
             var result = a64.isI64('Z3');
             should.exist(result);
@@ -46,14 +46,14 @@ describe('isI64()', function() {
         });
     });
 
-    describe('base64 string with underscore passed', function() {
+    describe('base64 string with underscore', function() {
         it('returns true', function() {
             var result = a64.isI64('3_');
             should.exist(result);
             result.should.equal(true);
         });
     });
-    describe('base64 string with dash passed', function() {
+    describe('base64 string with dash', function() {
         it('returns true', function() {
             var result = a64.isI64('-G');
             should.exist(result);

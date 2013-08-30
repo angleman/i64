@@ -14,7 +14,7 @@ describe('asInt()', function() {
         });
     });
 
-    describe('small integer passed and returned', function() {
+    describe('small integer', function() {
         var result;
         it('returns "mGW"', function() {
             result = a64.asInt(92858);
@@ -28,7 +28,7 @@ describe('asInt()', function() {
         });
     });
 
-    describe('large integer passed and returned', function() {
+    describe('large integer', function() {
         var result;
         it('returns "5abxVtZRda"', function() {
             result = a64.asInt('92937450274902858');

@@ -14,11 +14,12 @@ describe('asHex()', function() {
         });
     });
 
-    describe('small hexidecimal passed and returned', function() {
+    describe('small hexidecimal', function() {
         var result;
         it('returns "3yzU"', function() {
             result = a64.asHex('0e28f8');
             should.exist(result);
+            result = a64.asHex('0e28f8').valueOf();
             result.should.equal('3yzU');
         });
         it('returns "e28f8"', function() {
@@ -28,7 +29,7 @@ describe('asHex()', function() {
         });
     });
 
-    describe('large hexidecimal passed and returned', function() {
+    describe('large hexidecimal', function() {
         var result;
         it('returns "2iWjuR0G-gGdyvMZ5WILSEdf"', function() {
             result = a64.asHex('092e937b502af90a8d89fc3d17ab2fda834f');
