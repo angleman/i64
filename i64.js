@@ -163,7 +163,19 @@ i64.prototype.asHex = function(hexvalue) {
 	}
 }
 
+/** TODO:
+i64.asDate([date])                // get/set value as Date
+i64.asMicrotime([microtime])      // get/set value as Microtime
+i64.asGeo([degrees, [precision]]) // get/set value as Longitude or Latitude degrees, base64 digits of precision
 
+i64.asDate(new Date()).as64() // 38dc3g date to base64 
+i64.asGeo(-28.22).as64()      // g2     geo degrees to base64
+
+    "base_year":        2010      // to help be human readable. ex: year 0=2010, 1=2011, etc
+  , "date_format":      'ymdhis'  // one character for each date granularity
+  , "geo_precision":    2         // approximately 10km (a little more than one decimal point of precision)
+
+**/
 
 /** EXPORT GLOBAL INSTANCE**/
 var i64GlobalInstance = new i64();

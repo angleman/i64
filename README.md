@@ -17,11 +17,8 @@ i64.valueOf([int64_string])       // value as Numeric Base64 String, set option
 i64.isI64(int64_string)           // true if a valid int64_string is passed
 i64.asInt([integer])              // get/set value as Integer
 i64.asHex([hex_string])           // get/set value as Hex
-i64.asDate([date])                // get/set value as Date
-i64.asMicrotime([microtime])      // get/set value as Microtime
-i64.asGeo([degrees, [precision]]) // get/set value as Longitude or Latitude degrees, base64 digits of precision
 i64.config([config])              // get/set configuration
-i64.new(config)                   // new instance factor for i64
+i64.new(config)                   // new instance factory
 ```
 
 ## Numeric Base64 String Digits
@@ -44,17 +41,13 @@ _       63       (underscore)
 i64.asInt(64)                 // _      integer to base64
 i64.as64('a').asInt()         // 10     base64 to integer 
 i64.asHex('ff').asInt()       // 255    hex to integer 
-i64.asDate(new Date()).as64() // 38dc3g date to base64 
-i64.asGeo(-28.22).as64()      // g2     geo degrees to base64
 ```
 
 ## Default Config
 
 ```
 { 
-    "base_year":        2010      // to help be human readable. ex: year 0=2010, 1=2011, etc
-  , "date_format":      'ymdhis'  // one character for each date granularity
-  , "geo_precision":    2         // approximately 10km (a little more than one decimal point of precision)
+   // future use: part of asDate, asMicrotime and asGeo
 }
 ```
 
