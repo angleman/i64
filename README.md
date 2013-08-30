@@ -18,6 +18,7 @@ i64.isI64(int64_string)           // true if a valid int64_string is passed
 i64.asInt([integer])              // get/set value as Integer
 i64.asHex([hex_string])           // get/set value as Hexidecimal
 i64.asDate([date])                // get/set value as Date
+i64.asGeo([degrees])              // get/set value as Degrees (+/- 180.0)
 i64.config([config])              // get/set configuration
 i64.new(config)                   // new instance factory
 ```
@@ -30,6 +31,7 @@ i64.valueOf('a').asInt()                // 10       base64 to integer
 i64.asHex('ff').asInt()                 // 255      hex to integer
 date = new Date(2013,08,29,20,12,15,0)
 i64.asDate(date).valueOf()              // 38tkcf00 date to int64_string 
+i64.asGeo(-71.5653).valueOf()           // ji       ~10km accuracy with default 2 digit precision
 ```
 
 ## Big and Fast number handling
