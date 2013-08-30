@@ -13,7 +13,6 @@ describe('asDate()', function() {
             result = a64.asDate(date);
             should.exist(result);
             result = a64.valueOf();
-            console.log(result);
             result.should.equal('38tkcf00');
         });
 
@@ -21,7 +20,6 @@ describe('asDate()', function() {
             result = a64.asDate();
             should.exist(result);
             result = result.toISOString();
-            console.log(result);
             result.should.equal('2013-09-30T02:12:15.000Z');
         });
     });
