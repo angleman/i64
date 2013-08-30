@@ -74,7 +74,7 @@ i64.prototype._intTo64Fast = function(number) {
 // based on: http://stackoverflow.com/questions/6213227/fastest-way-to-convert-a-number-to-radix-64-in-javascript
 i64.prototype._toIntFast = function(i64string) {
 	if (!this.isI64(i64string)) {
-		throw new I64StringError("Invalid _toIntFast() Int64String");
+		throw new I64StringError("Invalid _toIntFast() Int64String: '" + i64string + '"');
 	}
     var result = 0
       , alphabet = this._config.alphabet
@@ -117,7 +117,7 @@ i64.prototype.config = function(config_or_value) {
 
 
 i64.prototype.isI64 = function(i64string) {
-	var result = (typeof i64string == 'string') && (i64string == i64string.match(/^([A-Za-z0-9+/])*/g));
+	var result = (typeof i64string == 'string') && (i64string == i64string.match(/^([\-_A-Za-z0-9+/])*/g));
 	return result;
 }
 
@@ -164,11 +164,9 @@ i64.prototype.asHex = function(hexvalue) {
 }
 
 /** TODO:
-i64.asDate([date])                // get/set value as Date
 i64.asMicrotime([microtime])      // get/set value as Microtime
 i64.asGeo([degrees, [precision]]) // get/set value as Longitude or Latitude degrees, base64 digits of precision
 
-i64.asDate(new Date()).as64() // 38dc3g date to base64 
 i64.asGeo(-28.22).as64()      // g2     geo degrees to base64
 
     "base_year":        2010      // to help be human readable. ex: year 0=2010, 1=2011, etc
