@@ -1,4 +1,4 @@
-# TOC 
+# TOC
    - [_intTo64Fast()](#_intto64fast)
      - [no arguments](#_intto64fast-no-arguments)
      - [negative number](#_intto64fast-negative-number)
@@ -11,6 +11,10 @@
      - [select date](#asdate-select-date)
    - [asGeo()](#asgeo)
      - [select latitude](#asgeo-select-latitude)
+   - [asGeoJson()](#asgeojson)
+     - [select latitude](#asgeojson-select-latitude)
+   - [asGeoSet()](#asgeoset)
+     - [select latitude](#asgeoset-select-latitude)
    - [asHex()](#ashex)
      - [no arguments](#ashex-no-arguments)
      - [small hexidecimal](#ashex-small-hexidecimal)
@@ -155,6 +159,51 @@ returns approximately -71.5653.
 result = a64.asGeo();
 should.exist(result);
 result.should.equal(-71.54296875);
+```
+
+<a name="asgeojson"></a>
+# asGeoJson()
+<a name="asgeojson-select-latitude"></a>
+## select latitude
+returns "DKji".
+
+```js
+result = a64.asGeoJson({latitude: 43.4108, longitude:-71.5653});
+should.exist(result);
+result = a64.valueOf();
+result.should.equal('DKji');
+```
+
+returns approximately 43.4108, -71.5653.
+
+```js
+result = a64.asGeoJson();
+should.exist(result);
+result.should.have.keys('latitude','longitude');
+result.latitude.should.equal(43.41796875);
+result.longitude.should.equal(-71.54296875);
+```
+
+<a name="asgeoset"></a>
+# asGeoSet()
+<a name="asgeoset-select-latitude"></a>
+## select latitude
+returns "DKji".
+
+```js
+result = a64.asGeoSet([43.4108, -71.5653]);
+should.exist(result);
+result = a64.valueOf();
+result.should.equal('DKji');
+```
+
+returns approximately 43.4108, -71.5653.
+
+```js
+result = a64.asGeoSet();
+should.exist(result);
+result[0].should.equal(43.41796875);
+result[1].should.equal(-71.54296875);
 ```
 
 <a name="ashex"></a>
