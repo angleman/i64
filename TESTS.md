@@ -1,3 +1,5 @@
+38tkcf00
+2013-09-30T02:12:15.000Z
 # TOC
    - [_intTo64Fast()](#_intto64fast)
      - [no arguments](#_intto64fast-no-arguments)
@@ -7,24 +9,27 @@
      - [no arguments](#_tointfast-no-arguments)
      - [non base64 string passed](#_tointfast-non-base64-string-passed)
      - [base64 string passed](#_tointfast-base64-string-passed)
+   - [asDate()](#asdate)
+     - [select date](#asdate-select-date)
    - [asHex()](#ashex)
      - [no arguments](#ashex-no-arguments)
-     - [small hexidecimal passed and returned](#ashex-small-hexidecimal-passed-and-returned)
-     - [large hexidecimal passed and returned](#ashex-large-hexidecimal-passed-and-returned)
+     - [small hexidecimal](#ashex-small-hexidecimal)
+     - [large hexidecimal](#ashex-large-hexidecimal)
    - [asInt()](#asint)
      - [no arguments](#asint-no-arguments)
-     - [small integer passed and returned](#asint-small-integer-passed-and-returned)
-     - [large integer passed and returned](#asint-large-integer-passed-and-returned)
+     - [small integer](#asint-small-integer)
+     - [large integer](#asint-large-integer)
    - [cross conversion](#cross-conversion)
      - [hexidecimal to integer](#cross-conversion-hexidecimal-to-integer)
+     - [integer to hexidecimal](#cross-conversion-integer-to-hexidecimal)
    - [isI64()](#isi64)
      - [no arguments](#isi64-no-arguments)
-     - [non base64 string passed](#isi64-non-base64-string-passed)
+     - [non base64 string](#isi64-non-base64-string)
      - [integer passed](#isi64-integer-passed)
-     - [base64 encoded string passed](#isi64-base64-encoded-string-passed)
-     - [base64 string passed](#isi64-base64-string-passed)
-     - [base64 string with underscore passed](#isi64-base64-string-with-underscore-passed)
-     - [base64 string with dash passed](#isi64-base64-string-with-dash-passed)
+     - [base64 encoded string](#isi64-base64-encoded-string)
+     - [base64 string](#isi64-base64-string)
+     - [base64 string with underscore](#isi64-base64-string-with-underscore)
+     - [base64 string with dash](#isi64-base64-string-with-dash)
    - [valueOf()](#valueof)
      - [no arguments](#valueof-no-arguments)
      - [argument passed](#valueof-argument-passed)
@@ -108,6 +113,31 @@ var result = a64._toIntFast('cR');
 result.should.equal(821);
 ```
 
+<a name="asdate"></a>
+# asDate()
+<a name="asdate-select-date"></a>
+## select date
+returns "38tkcf00".
+
+```js
+var date = new Date(2013, 08, 29, 20, 12, 15, 0);
+result = a64.asDate(date);
+should.exist(result);
+result = a64.valueOf();
+console.log(result);
+result.should.equal('38tkcf00');
+```
+
+returns "2013-09-30T02:12:15.000Z".
+
+```js
+result = a64.asDate();
+should.exist(result);
+result = result.toISOString();
+console.log(result);
+result.should.equal('2013-09-30T02:12:15.000Z');
+```
+
 <a name="ashex"></a>
 # asHex()
 <a name="ashex-no-arguments"></a>
@@ -120,13 +150,14 @@ should.exist(result);
 result.should.equal(0);
 ```
 
-<a name="ashex-small-hexidecimal-passed-and-returned"></a>
-## small hexidecimal passed and returned
+<a name="ashex-small-hexidecimal"></a>
+## small hexidecimal
 returns "3yzU".
 
 ```js
 result = a64.asHex('0e28f8');
 should.exist(result);
+result = a64.asHex('0e28f8').valueOf();
 result.should.equal('3yzU');
 ```
 
@@ -138,8 +169,8 @@ should.exist(result);
 result.should.equal('0e28f8');
 ```
 
-<a name="ashex-large-hexidecimal-passed-and-returned"></a>
-## large hexidecimal passed and returned
+<a name="ashex-large-hexidecimal"></a>
+## large hexidecimal
 returns "2iWjuR0G-gGdyvMZ5WILSEdf".
 
 ```js
@@ -168,8 +199,8 @@ should.exist(result);
 result.should.equal(0);
 ```
 
-<a name="asint-small-integer-passed-and-returned"></a>
-## small integer passed and returned
+<a name="asint-small-integer"></a>
+## small integer
 returns "mGW".
 
 ```js
@@ -186,8 +217,8 @@ should.exist(result);
 result.should.equal(92858);
 ```
 
-<a name="asint-large-integer-passed-and-returned"></a>
-## large integer passed and returned
+<a name="asint-large-integer"></a>
+## large integer
 returns "5abxVtZRda".
 
 ```js
@@ -211,11 +242,23 @@ result.should.equal('92937450274902858');
 returns 255.
 
 ```js
-var result = a64.asHex('ff');
+result = a64.asHex('ff');
 should.exist(result);
 
-result = a64.asInt();
+result = a64.asHex('ff').asInt();
 result.should.equal(255);
+```
+
+<a name="cross-conversion-integer-to-hexidecimal"></a>
+## integer to hexidecimal
+returns fffe.
+
+```js
+result = a64.asInt(65534);
+should.exist(result);
+
+result = a64.asInt(65534).asHex();
+result.should.equal('fffe');
 ```
 
 <a name="isi64"></a>
@@ -230,8 +273,8 @@ should.exist(result);
 result.should.equal(false);
 ```
 
-<a name="isi64-non-base64-string-passed"></a>
-## non base64 string passed
+<a name="isi64-non-base64-string"></a>
+## non base64 string
 returns false.
 
 ```js
@@ -250,8 +293,8 @@ should.exist(result);
 result.should.equal(false);
 ```
 
-<a name="isi64-base64-encoded-string-passed"></a>
-## base64 encoded string passed
+<a name="isi64-base64-encoded-string"></a>
+## base64 encoded string
 returns false.
 
 ```js
@@ -260,8 +303,8 @@ should.exist(result);
 result.should.equal(false);
 ```
 
-<a name="isi64-base64-string-passed"></a>
-## base64 string passed
+<a name="isi64-base64-string"></a>
+## base64 string
 returns true.
 
 ```js
@@ -270,8 +313,8 @@ should.exist(result);
 result.should.equal(true);
 ```
 
-<a name="isi64-base64-string-with-underscore-passed"></a>
-## base64 string with underscore passed
+<a name="isi64-base64-string-with-underscore"></a>
+## base64 string with underscore
 returns true.
 
 ```js
@@ -280,8 +323,8 @@ should.exist(result);
 result.should.equal(true);
 ```
 
-<a name="isi64-base64-string-with-dash-passed"></a>
-## base64 string with dash passed
+<a name="isi64-base64-string-with-dash"></a>
+## base64 string with dash
 returns true.
 
 ```js
@@ -304,11 +347,13 @@ result.should.equal('0');
 
 <a name="valueof-argument-passed"></a>
 ## argument passed
-returns G5f2.
+returns "this" and G5f2.
 
 ```js
-var result = a64.valueOf('G5f2');
+result = a64.valueOf('G5f2');
 should.exist(result);
+
+result = a64.valueOf('G5f2').valueOf();
 result.should.equal('G5f2');
 ```
 
