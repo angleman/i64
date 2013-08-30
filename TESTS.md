@@ -9,6 +9,8 @@
      - [base64 string passed](#_tointfast-base64-string-passed)
    - [asDate()](#asdate)
      - [select date](#asdate-select-date)
+   - [asGeo()](#asgeo)
+     - [select latitude](#asgeo-select-latitude)
    - [asHex()](#ashex)
      - [no arguments](#ashex-no-arguments)
      - [small hexidecimal](#ashex-small-hexidecimal)
@@ -132,6 +134,27 @@ result = a64.asDate();
 should.exist(result);
 result = result.toISOString();
 result.should.equal('2013-09-30T02:12:15.000Z');
+```
+
+<a name="asgeo"></a>
+# asGeo()
+<a name="asgeo-select-latitude"></a>
+## select latitude
+returns "ji".
+
+```js
+result = a64.asGeo(-71.5653);
+should.exist(result);
+result = a64.valueOf();
+result.should.equal('ji');
+```
+
+returns approximately -71.5653.
+
+```js
+result = a64.asGeo();
+should.exist(result);
+result.should.equal(-71.54296875);
 ```
 
 <a name="ashex"></a>
