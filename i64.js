@@ -238,7 +238,7 @@ i64.prototype.asHex = function(hexvalue) {
 
 i64.prototype.asDate = function(datevalue, options) {
 	options = options || this._config;
-	if (typeof datevalue == 'undefined') { // no parameter, return the datevalue value
+	if (typeof datevalue == 'undefined') { // no parameter, return the date value
 		return this._base64ToDate(this._value, options);
 	} else { // assign the date value
 		this._value = this._dateToBase64(datevalue, options);
@@ -250,7 +250,7 @@ i64.prototype.asDate = function(datevalue, options) {
 
 i64.prototype.asGeo = function(degrees, options) {
 	options = options || this._config;
-	if (typeof degrees == 'undefined') { // no parameter, return the datevalue value
+	if (typeof degrees == 'undefined') { // no parameter, return the geo value
 		return this._base64ToDegrees(this._value, options);
 	} else { // assign the degrees value
 		this._value = this._degreesToBase64(degrees, options);
@@ -260,13 +260,38 @@ i64.prototype.asGeo = function(degrees, options) {
 
 
 
+i64.prototype.asGeoSet = function(geoset, options, asJson) {
+	options = options || this._config;
+	if (typeof geoset == 'undefined') { // no parameter, return the geo set
+		var digits = this._value.length / 2;
+		options.geo_precision = this._value.length / 2;
+		var latitude  = this._base64ToDegrees(this._value.substr(0,digits), options)
+		  , longitude = this._base64ToDegrees(this._value.substr(digits,digits), options)
+		  , result    = (asJson) ? {
+		  		latitude: latitude
+		  	  , longitude: longitude
+		  	} : [latitude, longitude]
+		 ;
+		return result;
+	} else { // assign the degrees value
+		var geo1      = geoset.latitude  || geoset[0]
+		  , geo2      = geoset.longitude || geoset[1]
+		  , latitude  = this._degreesToBase64(geo1, options)
+		  , longitude = this._degreesToBase64(geo2, options)
+		;
+		this._value = latitude + longitude;
+		return this;
+	}
+}
+
+
+
+i64.prototype.asGeoJson = function(geoset, options, asJson) {
+	return this._asGeoSet(geoset, options, true);
+}
+
 /** TODO:
 i64.asMicrotime([microtime])      // get/set value as Microtime
-i64.asGeo([degrees, [precision]]) // get/set value as Longitude or Latitude degrees, base64 digits of precision
-
-i64.asGeo(-28.22).as64()      // g2     geo degrees to base64
-
-    "base_year":        2010      // to help be human readable. ex: year 0=2010, 1=2011, etc
 
 **/
 
