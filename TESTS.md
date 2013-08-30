@@ -23,6 +23,10 @@
      - [no arguments](#asint-no-arguments)
      - [small integer](#asint-small-integer)
      - [large integer](#asint-large-integer)
+   - [asMicrotime()](#asmicrotime)
+     - [microtime.nowStruct()](#asmicrotime-microtimenowstruct)
+     - [microtime.nowDouble()](#asmicrotime-microtimenowdouble)
+     - [microtime.now()](#asmicrotime-microtimenow)
    - [cross conversion](#cross-conversion)
      - [hexidecimal to integer](#cross-conversion-hexidecimal-to-integer)
      - [integer to hexidecimal](#cross-conversion-integer-to-hexidecimal)
@@ -301,6 +305,71 @@ returns "92937450274902858".
 result = a64.asInt();
 should.exist(result);
 result.should.equal('92937450274902858');
+```
+
+<a name="asmicrotime"></a>
+# asMicrotime()
+<a name="asmicrotime-microtimenowstruct"></a>
+## microtime.nowStruct()
+preserved date returns "1377906220".
+
+```js
+should.exist(micro);
+result = a64.asMicrotime(micro);
+should.exist(result);
+result = a64.asMicrotime();
+should.exist(result);
+result.should.be.an.instanceOf(Array);
+result.length.should.equal(2);
+result[0].should.equal(micro[0]);
+```
+
+preserved microseconds returns "677644".
+
+```js
+result[1].should.equal(micro[1]);
+```
+
+<a name="asmicrotime-microtimenowdouble"></a>
+## microtime.nowDouble()
+preserved date returns "1377906220".
+
+```js
+should.exist(micro);
+result = a64.asMicrotime(micro);
+should.exist(result);
+result = a64.asMicrotime();
+should.exist(result);
+result.should.be.an.instanceOf(Array);
+result.length.should.equal(2);
+result[0].should.equal(date);
+```
+
+preserved microseconds returns "677848".
+
+```js
+result[1].should.equal(microseconds);
+```
+
+<a name="asmicrotime-microtimenow"></a>
+## microtime.now()
+preserved date returns "1377906220".
+
+```js
+should.exist(micro);
+result = a64.asMicrotime(micro);
+should.exist(result);
+result = a64.asMicrotime();
+should.exist(result);
+result.should.be.an.instanceOf(Array);
+result.length.should.equal(2);
+result[0].should.equal(date);
+```
+
+preserved microseconds returns "678042".
+
+```js
+result[1].should.equal(microseconds);
 ```
 
 <a name="cross-conversion"></a>
