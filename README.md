@@ -1,6 +1,7 @@
 # i64 [![NPM version](https://badge.fury.io/js/i64.png)](http://badge.fury.io/js/i64) [![Build Status](https://travis-ci.org/angleman/i64.png)](https://travis-ci.org/angleman/i64) [![Dependency Status](https://gemnasium.com/angleman/i64.png)](https://gemnasium.com/angleman/i64) 
 
-URL safe base64 integers and conversion tools
+URL safe Base64 Integer Strings (BAS) and conversion tools. Supports both fast conversions for regular integers and large integer strings (via [alan/clarke/int-encoder](http://github.com/alanclarke/int-encoder)). Assists with compression as fewer base 64 digits are needed to represent larger integers than base 10 digits. Unlike RFC-3548 Base 64 encodings, readability of BAS is improved for small integers by using an alphabet that extends base-converter in PHP and following node [base-converter](https://github.com/naholyr/node-base-converter).
+
 
 ## Install
 
@@ -46,9 +47,6 @@ point = latitude: 43.4108, longitude:-71.5653}
 i64.asGeoJson(point).valueOf()          // DKji     
 ```
 
-## Big and Fast number handling
-
-Large integer string conversions are handled complements of [alan/clarke/int-encoder](http://github.com/alanclarke/int-encoder).
 
 Normal integers are handled by a faster radix converter.
 
