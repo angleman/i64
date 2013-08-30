@@ -45,6 +45,21 @@ describe('isI64()', function() {
             result.should.equal(true);
         });
     });
+
+    describe('base64 string with underscore passed', function() {
+        it('returns true', function() {
+            var result = a64.isI64('3_');
+            should.exist(result);
+            result.should.equal(true);
+        });
+    });
+    describe('base64 string with dash passed', function() {
+        it('returns true', function() {
+            var result = a64.isI64('-G');
+            should.exist(result);
+            result.should.equal(true);
+        });
+    });
 });
 
 
