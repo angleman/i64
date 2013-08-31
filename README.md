@@ -51,10 +51,6 @@ i64.asGeoJson(point).valueOf()          // DKji
 
 Normal integers are handled by a faster radix converter.
 
-## Base64 Integer String digits
-
-As an extension of Base36 digits, BAS digits are: 0..9a..zA..Z-_
-
 ## Default Config
 
 ```
