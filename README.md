@@ -14,8 +14,8 @@ npm install i64
 ```
 var i64 = require('i64');
 
-i64.valueOf([int64_string])       // value as Base64 Integer String, set option
-i64.isI64(int64_string)           // true if a valid int64_string is passed
+i64.valueOf([int64_string])       // value as Base64 Integer String (BAS), set option
+i64.isI64(int64_string)           // true if a valid BAS is passed
 i64.asInt([integer])              // get/set value as Integer
 i64.asHex([hex_string])           // get/set value as Hexidecimal
 i64.asDate([date])                // get/set value as Date
@@ -30,7 +30,7 @@ i64.new(config)                   // new instance factory
 ## Examples
 
 ```
-i64.asInt(64).valueOf()                 // _         integer to Base64 Integers String (BAS)
+i64.asInt(64).valueOf()                 // _         integer to BAS
 
 i64.valueOf('a').asInt()                // 10        BAS to integer 
 
