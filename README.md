@@ -48,9 +48,6 @@ point = latitude: 43.4108, longitude:-71.5653}
 i64.asGeoJson(point).valueOf()          // DKji     
 ```
 
-
-Normal integers are handled by a faster radix converter.
-
 ## Default Config
 
 ```
