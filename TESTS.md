@@ -7,30 +7,26 @@
      - [no arguments](#_tointfast-no-arguments)
      - [non base64 string passed](#_tointfast-non-base64-string-passed)
      - [base64 string passed](#_tointfast-base64-string-passed)
-   - [asDate()](#asdate)
-     - [select date](#asdate-select-date)
-     - [current date](#asdate-current-date)
-   - [asGeo()](#asgeo)
-     - [select latitude](#asgeo-select-latitude)
-   - [asGeoJson()](#asgeojson)
-     - [select latitude](#asgeojson-select-latitude)
-   - [asGeoSet()](#asgeoset)
-     - [select latitude](#asgeoset-select-latitude)
-   - [asHex()](#ashex)
-     - [no arguments](#ashex-no-arguments)
-     - [small hexidecimal](#ashex-small-hexidecimal)
-     - [large hexidecimal](#ashex-large-hexidecimal)
-   - [asInt()](#asint)
-     - [no arguments](#asint-no-arguments)
-     - [small integer](#asint-small-integer)
-     - [large integer](#asint-large-integer)
-   - [asMicrotime()](#asmicrotime)
-     - [microtime.nowStruct()](#asmicrotime-microtimenowstruct)
-     - [microtime.nowDouble()](#asmicrotime-microtimenowdouble)
-     - [microtime.now()](#asmicrotime-microtimenow)
    - [cross conversion](#cross-conversion)
      - [hexidecimal to integer](#cross-conversion-hexidecimal-to-integer)
      - [integer to hexidecimal](#cross-conversion-integer-to-hexidecimal)
+   - [date()](#date)
+     - [select date](#date-select-date)
+     - [current date](#date-current-date)
+   - [degree()](#degree)
+     - [select latitude](#degree-select-latitude)
+   - [geoJson()](#geojson)
+     - [select latitude](#geojson-select-latitude)
+   - [geoSet()](#geoset)
+     - [select latitude](#geoset-select-latitude)
+   - [hex()](#hex)
+     - [no arguments](#hex-no-arguments)
+     - [small hexidecimal](#hex-small-hexidecimal)
+     - [large hexidecimal](#hex-large-hexidecimal)
+   - [int()](#int)
+     - [no arguments](#int-no-arguments)
+     - [small integer](#int-small-integer)
+     - [large integer](#int-large-integer)
    - [isI64()](#isi64)
      - [no arguments](#isi64-no-arguments)
      - [non base64 string](#isi64-non-base64-string)
@@ -39,6 +35,10 @@
      - [base64 string](#isi64-base64-string)
      - [base64 string with underscore](#isi64-base64-string-with-underscore)
      - [base64 string with dash](#isi64-base64-string-with-dash)
+   - [microtime()](#microtime)
+     - [microtime.nowStruct()](#microtime-microtimenowstruct)
+     - [microtime.nowDouble()](#microtime-microtimenowdouble)
+     - [microtime.now()](#microtime-microtimenow)
    - [valueOf()](#valueof)
      - [no arguments](#valueof-no-arguments)
      - [argument passed](#valueof-argument-passed)
@@ -122,334 +122,6 @@ var result = a64._toIntFast('cR');
 result.should.equal(821);
 ```
 
-<a name="asdate"></a>
-# asDate()
-<a name="asdate-select-date"></a>
-## select date
-returns "38tkcf00".
-
-```js
-var date = new Date(2013, 08, 29, 20, 12, 15, 0);
-result = a64.asDate(date);
-should.exist(result);
-result = a64.valueOf();
-result.should.equal('38tkcf00');
-```
-
-<a name="asdate-current-date"></a>
-## current date
- returns "1377909560553".
-
-```js
-result = a64.asDate(date);
-should.exist(result);
-result = a64.asDate();
-should.exist(result);
-result = result.valueOf()
-result.should.equal(date.valueOf());
-```
-
-<a name="asgeo"></a>
-# asGeo()
-<a name="asgeo-select-latitude"></a>
-## select latitude
-returns "j".
-
-```js
-a64.config({ geo_precision: 1 });
-result = a64.asGeo(-71.5653);
-should.exist(result);
-result = a64.valueOf();
-result.should.equal('j');
-```
-
-returns approximately -71.5653.
-
-```js
-result = a64.asGeo();
-should.exist(result);
-result.should.equal(-73.125);
-```
-
-returns "ji".
-
-```js
-a64.config({ geo_precision: 2 });
-result = a64.asGeo(-71.5653);
-should.exist(result);
-result = a64.valueOf();
-result.should.equal('ji');
-```
-
-returns approximately -71.5653.
-
-```js
-result = a64.asGeo();
-should.exist(result);
-result.should.equal(-71.54296875);
-```
-
-returns "jhM".
-
-```js
-a64.config({ geo_precision: 3 });
-result = a64.asGeo(-71.5653);
-should.exist(result);
-result = a64.valueOf();
-result.should.equal('jhM');
-```
-
-returns approximately -71.5653.
-
-```js
-result = a64.asGeo();
-should.exist(result);
-result.should.equal(-71.56494140625);
-```
-
-returns "jhLL".
-
-```js
-a64.config({ geo_precision: 4 });
-result = a64.asGeo(-71.5653);
-should.exist(result);
-result = a64.valueOf();
-result.should.equal('jhLL');
-```
-
-returns approximately -71.5653.
-
-```js
-result = a64.asGeo();
-should.exist(result);
-result.should.equal(-71.56530618667603);
-```
-
-returns "jhLLi".
-
-```js
-a64.config({ geo_precision: 5 });
-result = a64.asGeo(-71.5653);
-should.exist(result);
-result = a64.valueOf();
-result.should.equal('jhLLi');
-```
-
-returns approximately -71.5653.
-
-```js
-result = a64.asGeo();
-should.exist(result);
-result.should.equal(-71.56530015170574);
-```
-
-<a name="asgeojson"></a>
-# asGeoJson()
-<a name="asgeojson-select-latitude"></a>
-## select latitude
-returns "DKji".
-
-```js
-result = a64.asGeoJson({latitude: 43.4108, longitude:-71.5653});
-should.exist(result);
-result = a64.valueOf();
-result.should.equal('DKji');
-```
-
-returns approximately 43.4108, -71.5653.
-
-```js
-result = a64.asGeoJson();
-should.exist(result);
-result.should.have.keys('latitude','longitude');
-result.latitude.should.equal(43.41796875);
-result.longitude.should.equal(-71.54296875);
-```
-
-<a name="asgeoset"></a>
-# asGeoSet()
-<a name="asgeoset-select-latitude"></a>
-## select latitude
-returns "DKji".
-
-```js
-result = a64.asGeoSet([43.4108, -71.5653]);
-should.exist(result);
-result = a64.valueOf();
-result.should.equal('DKji');
-```
-
-returns approximately 43.4108, -71.5653.
-
-```js
-result = a64.asGeoSet();
-should.exist(result);
-result[0].should.equal(43.41796875);
-result[1].should.equal(-71.54296875);
-```
-
-<a name="ashex"></a>
-# asHex()
-<a name="ashex-no-arguments"></a>
-## no arguments
-returns 0.
-
-```js
-var result = a64.asInt();
-should.exist(result);
-result.should.equal(0);
-```
-
-<a name="ashex-small-hexidecimal"></a>
-## small hexidecimal
-returns "3yzU".
-
-```js
-result = a64.asHex('0e28f8');
-should.exist(result);
-result = a64.asHex('0e28f8').valueOf();
-result.should.equal('3yzU');
-```
-
-returns "e28f8".
-
-```js
-result = a64.asHex();
-should.exist(result);
-result.should.equal('0e28f8');
-```
-
-<a name="ashex-large-hexidecimal"></a>
-## large hexidecimal
-returns "2iWjuR0G-gGdyvMZ5WILSEdf".
-
-```js
-result = a64.asHex('092e937b502af90a8d89fc3d17ab2fda834f');
-should.exist(result);
-result.should.equal('2iWjuR0G-gGdyvMZ5WILSEdf');
-```
-
-returns "092e937b502af90a8d89fc3d17ab2fda834f".
-
-```js
-result = a64.asHex();
-should.exist(result);
-result.should.equal('092e937b502af90a8d89fc3d17ab2fda834f');
-```
-
-<a name="asint"></a>
-# asInt()
-<a name="asint-no-arguments"></a>
-## no arguments
-returns 0.
-
-```js
-var result = a64.asInt();
-should.exist(result);
-result.should.equal(0);
-```
-
-<a name="asint-small-integer"></a>
-## small integer
-returns "mGW".
-
-```js
-result = a64.asInt(92858);
-should.exist(result);
-result.should.equal('mGW');
-```
-
-returns "92858".
-
-```js
-result = a64.asInt();
-should.exist(result);
-result.should.equal(92858);
-```
-
-<a name="asint-large-integer"></a>
-## large integer
-returns "5abxVtZRda".
-
-```js
-result = a64.asInt('92937450274902858');
-should.exist(result);
-result.should.equal('5abxVtZRda');
-```
-
-returns "92937450274902858".
-
-```js
-result = a64.asInt();
-should.exist(result);
-result.should.equal('92937450274902858');
-```
-
-<a name="asmicrotime"></a>
-# asMicrotime()
-<a name="asmicrotime-microtimenowstruct"></a>
-## microtime.nowStruct()
-preserved date returns "1377909560".
-
-```js
-should.exist(micro);
-result = a64.asMicrotime(micro);
-should.exist(result);
-result = a64.asMicrotime();
-should.exist(result);
-result.should.be.an.instanceOf(Array);
-result.length.should.equal(2);
-result[0].should.equal(micro[0]);
-```
-
-preserved microseconds returns "559717".
-
-```js
-result[1].should.equal(micro[1]);
-```
-
-<a name="asmicrotime-microtimenowdouble"></a>
-## microtime.nowDouble()
-preserved date returns "1377909560".
-
-```js
-should.exist(micro);
-result = a64.asMicrotime(micro);
-should.exist(result);
-result = a64.asMicrotime();
-should.exist(result);
-result.should.be.an.instanceOf(Array);
-result.length.should.equal(2);
-result[0].should.equal(date);
-```
-
-preserved microseconds returns "559901".
-
-```js
-result[1].should.equal(microseconds);
-```
-
-<a name="asmicrotime-microtimenow"></a>
-## microtime.now()
-preserved date returns "1377909560".
-
-```js
-should.exist(micro);
-result = a64.asMicrotime(micro);
-should.exist(result);
-result = a64.asMicrotime();
-should.exist(result);
-result.should.be.an.instanceOf(Array);
-result.length.should.equal(2);
-result[0].should.equal(date);
-```
-
-preserved microseconds returns "560099".
-
-```js
-result[1].should.equal(microseconds);
-```
-
 <a name="cross-conversion"></a>
 # cross conversion
 <a name="cross-conversion-hexidecimal-to-integer"></a>
@@ -457,10 +129,10 @@ result[1].should.equal(microseconds);
 returns 255.
 
 ```js
-result = a64.asHex('ff');
+result = a64.hex('ff');
 should.exist(result);
 
-result = a64.asHex('ff').asInt();
+result = a64.hex('ff').int();
 result.should.equal(255);
 ```
 
@@ -469,11 +141,274 @@ result.should.equal(255);
 returns fffe.
 
 ```js
-result = a64.asInt(65534);
+result = a64.int(65534);
 should.exist(result);
 
-result = a64.asInt(65534).asHex();
+result = a64.int(65534).hex();
 result.should.equal('fffe');
+```
+
+<a name="date"></a>
+# date()
+<a name="date-select-date"></a>
+## select date
+returns "38tkcf00".
+
+```js
+var date = new Date(2013, 08, 29, 20, 12, 15, 0);
+result = a64.date(date);
+should.exist(result);
+result = a64.valueOf();
+result.should.equal('38tkcf00');
+```
+
+<a name="date-current-date"></a>
+## current date
+ returns "1377949062887".
+
+```js
+result = a64.date(date);
+should.exist(result);
+result = a64.date();
+should.exist(result);
+result = result.valueOf()
+result.should.equal(date.valueOf());
+```
+
+<a name="degree"></a>
+# degree()
+<a name="degree-select-latitude"></a>
+## select latitude
+returns "j".
+
+```js
+a64.config({ geo_precision: 1 });
+result = a64.degree(-71.5653);
+should.exist(result);
+result = a64.valueOf();
+result.should.equal('j');
+```
+
+returns approximately -71.5653.
+
+```js
+result = a64.degree();
+should.exist(result);
+result.should.equal(-73.125);
+```
+
+returns "ji".
+
+```js
+a64.config({ geo_precision: 2 });
+result = a64.degree(-71.5653);
+should.exist(result);
+result = a64.valueOf();
+result.should.equal('ji');
+```
+
+returns approximately -71.5653.
+
+```js
+result = a64.degree();
+should.exist(result);
+result.should.equal(-71.54296875);
+```
+
+returns "jhM".
+
+```js
+a64.config({ geo_precision: 3 });
+result = a64.degree(-71.5653);
+should.exist(result);
+result = a64.valueOf();
+result.should.equal('jhM');
+```
+
+returns approximately -71.5653.
+
+```js
+result = a64.degree();
+should.exist(result);
+result.should.equal(-71.56494140625);
+```
+
+returns "jhLL".
+
+```js
+a64.config({ geo_precision: 4 });
+result = a64.degree(-71.5653);
+should.exist(result);
+result = a64.valueOf();
+result.should.equal('jhLL');
+```
+
+returns approximately -71.5653.
+
+```js
+result = a64.degree();
+should.exist(result);
+result.should.equal(-71.56530618667603);
+```
+
+returns "jhLLi".
+
+```js
+a64.config({ geo_precision: 5 });
+result = a64.degree(-71.5653);
+should.exist(result);
+result = a64.valueOf();
+result.should.equal('jhLLi');
+```
+
+returns approximately -71.5653.
+
+```js
+result = a64.degree();
+should.exist(result);
+result.should.equal(-71.56530015170574);
+```
+
+<a name="geojson"></a>
+# geoJson()
+<a name="geojson-select-latitude"></a>
+## select latitude
+returns "DKji".
+
+```js
+result = a64.geoJson({latitude: 43.4108, longitude:-71.5653});
+should.exist(result);
+result = a64.valueOf();
+result.should.equal('DKji');
+```
+
+returns approximately 43.4108, -71.5653.
+
+```js
+result = a64.geoJson();
+should.exist(result);
+result.should.have.keys('latitude','longitude');
+result.latitude.should.equal(43.41796875);
+result.longitude.should.equal(-71.54296875);
+```
+
+<a name="geoset"></a>
+# geoSet()
+<a name="geoset-select-latitude"></a>
+## select latitude
+returns "DKji".
+
+```js
+result = a64.geoSet([43.4108, -71.5653]);
+should.exist(result);
+result = a64.valueOf();
+result.should.equal('DKji');
+```
+
+returns approximately 43.4108, -71.5653.
+
+```js
+result = a64.geoSet();
+should.exist(result);
+result[0].should.equal(43.41796875);
+result[1].should.equal(-71.54296875);
+```
+
+<a name="hex"></a>
+# hex()
+<a name="hex-no-arguments"></a>
+## no arguments
+returns 0.
+
+```js
+var result = a64.int();
+should.exist(result);
+result.should.equal(0);
+```
+
+<a name="hex-small-hexidecimal"></a>
+## small hexidecimal
+returns "3yzU".
+
+```js
+result = a64.hex('0e28f8');
+should.exist(result);
+result = a64.hex('0e28f8').valueOf();
+result.should.equal('3yzU');
+```
+
+returns "e28f8".
+
+```js
+result = a64.hex();
+should.exist(result);
+result.should.equal('0e28f8');
+```
+
+<a name="hex-large-hexidecimal"></a>
+## large hexidecimal
+returns "2iWjuR0G-gGdyvMZ5WILSEdf".
+
+```js
+result = a64.hex('092e937b502af90a8d89fc3d17ab2fda834f');
+should.exist(result);
+result.should.equal('2iWjuR0G-gGdyvMZ5WILSEdf');
+```
+
+returns "092e937b502af90a8d89fc3d17ab2fda834f".
+
+```js
+result = a64.hex();
+should.exist(result);
+result.should.equal('092e937b502af90a8d89fc3d17ab2fda834f');
+```
+
+<a name="int"></a>
+# int()
+<a name="int-no-arguments"></a>
+## no arguments
+returns 0.
+
+```js
+var result = a64.int();
+should.exist(result);
+result.should.equal(0);
+```
+
+<a name="int-small-integer"></a>
+## small integer
+returns "mGW".
+
+```js
+result = a64.int(92858);
+should.exist(result);
+result.should.equal('mGW');
+```
+
+returns "92858".
+
+```js
+result = a64.int();
+should.exist(result);
+result.should.equal(92858);
+```
+
+<a name="int-large-integer"></a>
+## large integer
+returns "5abxVtZRda".
+
+```js
+result = a64.int('92937450274902858');
+should.exist(result);
+result.should.equal('5abxVtZRda');
+```
+
+returns "92937450274902858".
+
+```js
+result = a64.int();
+should.exist(result);
+result.should.equal('92937450274902858');
 ```
 
 <a name="isi64"></a>
@@ -546,6 +481,71 @@ returns true.
 var result = a64.isI64('-G');
 should.exist(result);
 result.should.equal(true);
+```
+
+<a name="microtime"></a>
+# microtime()
+<a name="microtime-microtimenowstruct"></a>
+## microtime.nowStruct()
+preserved date returns "1377949062".
+
+```js
+should.exist(micro);
+result = a64.microtime(micro);
+should.exist(result);
+result = a64.microtime();
+should.exist(result);
+result.should.be.an.instanceOf(Array);
+result.length.should.equal(2);
+result[0].should.equal(micro[0]);
+```
+
+preserved microseconds returns "894317".
+
+```js
+result[1].should.equal(micro[1]);
+```
+
+<a name="microtime-microtimenowdouble"></a>
+## microtime.nowDouble()
+preserved date returns "1377949062".
+
+```js
+should.exist(micro);
+result = a64.microtime(micro);
+should.exist(result);
+result = a64.microtime();
+should.exist(result);
+result.should.be.an.instanceOf(Array);
+result.length.should.equal(2);
+result[0].should.equal(date);
+```
+
+preserved microseconds returns "894498".
+
+```js
+result[1].should.equal(microseconds);
+```
+
+<a name="microtime-microtimenow"></a>
+## microtime.now()
+preserved date returns "1377949062".
+
+```js
+should.exist(micro);
+result = a64.microtime(micro);
+should.exist(result);
+result = a64.microtime();
+should.exist(result);
+result.should.be.an.instanceOf(Array);
+result.length.should.equal(2);
+result[0].should.equal(date);
+```
+
+preserved microseconds returns "894695".
+
+```js
+result[1].should.equal(microseconds);
 ```
 
 <a name="valueof"></a>
