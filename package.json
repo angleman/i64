@@ -1,7 +1,7 @@
 {
   "name": "i64",
-  "version": "0.4.5", 
-  "description": "URL safe Base64 Integer Strings (BAS) and conversion tools. Supports both fast conversions for regular integers and large integer strings. Assists with compression as fewer base 64 digits are needed to represent larger integers than base 10 digits. Unlike RFC-3548 Base 64 encodings, readability of BAS is improved for small integers by using an alphabet that extends base-converter",
+  "version": "0.5.0", 
+  "description": "URL safe Base64 Integer Strings (BIS) and conversion tools. Supports both fast conversions for regular integers and large integer strings. Assists with compression as fewer base 64 digits are needed to represent larger integers than base 10 digits. Unlike RFC-3548 Base 64 encodings, readability of BIS is improved for small integers by using an alphabet that extends base-converter",
   "main": "i64.js",
   "scripts": {
     "test": "mocha -R list test/*.js",
@@ -42,6 +42,8 @@
     "int-encoder": "~0.1.4"
     },
   "devDependencies": {
+     "grunt": "0.4.x",
+     "grunt-bump": "0.0.x",
      "mocha": "~1.12.0",
      "should": "~1.2.2"
    }

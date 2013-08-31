@@ -268,7 +268,7 @@ i64.prototype.valueOf = function(i64string) {
 
 
 
-i64.prototype.asInt = function(intvalue) {
+i64.prototype.int = function(intvalue) {
 	if (typeof intvalue == 'undefined') { // no parameter, return the integer value
 		if (this._value.length > 4) { // large number
 			return int_encoder.decode(this._value, 10);
@@ -287,7 +287,7 @@ i64.prototype.asInt = function(intvalue) {
 
 
 
-i64.prototype.asHex = function(hexvalue) {
+i64.prototype.hex = function(hexvalue) {
 	if (typeof hexvalue == 'undefined') { // no parameter, return the hexidecimal value
 		return int_encoder.decode(this._value, 16);
 	} else { // assign the hexidecimal value
@@ -298,7 +298,7 @@ i64.prototype.asHex = function(hexvalue) {
 
 
 
-i64.prototype.asDate = function(datevalue, options) {
+i64.prototype.date = function(datevalue, options) {
 	options = options || this._config;
 	if (typeof datevalue == 'undefined') { // no parameter, return the date value
 		return this._base64ToDate(this._value, options);
@@ -310,7 +310,7 @@ i64.prototype.asDate = function(datevalue, options) {
 
 
 
-i64.prototype.asMicrotime = function(datevalue, options) {
+i64.prototype.microtime = function(datevalue, options) {
 	options = options || this._config;
 	if (typeof datevalue == 'undefined') { // no parameter, return the date value
 		return this._base64ToMicrotime(this._value, options);
@@ -322,7 +322,7 @@ i64.prototype.asMicrotime = function(datevalue, options) {
 
 
 
-i64.prototype.asGeo = function(degrees, options) {
+i64.prototype.degree = function(degrees, options) {
 	options = options || this._config;
 	if (typeof degrees == 'undefined') { // no parameter, return the geo value
 		return this._base64ToDegrees(this._value, options);
@@ -335,7 +335,7 @@ i64.prototype.asGeo = function(degrees, options) {
 
 
 
-i64.prototype.asGeoSet = function(geoset, options, asJson) {
+i64.prototype.geoSet = function(geoset, options, asJson) {
 	options = options || this._config;
 	if (typeof geoset == 'undefined') { // no parameter, return the geo set
 		var digits = this._value.length / 2;
@@ -361,14 +361,11 @@ i64.prototype.asGeoSet = function(geoset, options, asJson) {
 
 
 
-i64.prototype.asGeoJson = function(geoset, options, asJson) {
-	return this.asGeoSet(geoset, options, true);
+i64.prototype.geoJson = function(geoset, options, asJson) {
+	return this.geoSet(geoset, options, true);
 }
 
-/** TODO:
-i64.asMicrotime([microtime])      // get/set value as Microtime
 
-**/
 
 /** EXPORT GLOBAL INSTANCE**/
 var i64GlobalInstance = new i64();
