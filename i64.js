@@ -361,7 +361,7 @@ i64.prototype.geoSet = function(geoset, options, asJson) {
 
 
 
-i64.prototype.geoJson = function(geoset, options, asJson) {
+i64.prototype.geo = function(geoset, options, asJson) {
 	return this.geoSet(geoset, options, true);
 }
 
