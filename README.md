@@ -54,7 +54,7 @@ i64.asGeoJson(point).valueOf()          // DKji
 { 
    base_year:      2010,
    alphabet:       '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_',
-   geo_precision": 2  // Values 1: ~400 miles, 2: ~6 miles, 3: ~500 feet, 4: ~10 feet
+   geo_precision": 2  // Values 1: ~400 miles, 2: ~6 miles, 3: ~500 feet, 4: ~10 feet, 5: ~10 inches
 }
 ```
 

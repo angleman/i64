@@ -41,7 +41,9 @@ function i64(config_or_value) {
 
                    //   0       8       16      24      32      40      48      56     63
                    //   v       v       v       v       v       v       v       v      v
-var default_alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_';
+var default_alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_'
+  , geo_base         = [0, 64, 4096, 262144, 16777216, 1073741824]
+;
 
 
 
@@ -194,8 +196,7 @@ i64.prototype._base64ToMicrotime = function(base64, options) {
 i64.prototype._base64ToDegrees = function(base64) {
     var digits  = base64.length
       , intval  = this._toIntFast(base64)
-      , base    = [0, 64, 4096, 262144, 16777216]
-      , degrees = (intval / base[digits] * 360) - 180.0
+      , degrees = (intval / geo_base[digits] * 360) - 180.0
     ;
     return degrees;
 }
@@ -205,9 +206,8 @@ i64.prototype._base64ToDegrees = function(base64) {
 i64.prototype._degreesToBase64 = function(degrees, options) {
 	options    = options || this._config;
 	var geop   = options.geo_precision
-      , digits = (geop && (geop > 0) && (geop < 5)) ? geop : 2
-      , base   = [0, 64, 4096, 262144, 16777216]
-      , intval = Math.round((degrees + 180) * base[digits] / 360)
+      , digits = (geop && (geop > 0) && (geop < 6)) ? geop : 2
+      , intval = Math.round((degrees + 180) * geo_base[digits] / 360)
       , base64 = this._intTo64Fast(intval)
     ;
     base64 = '0000' + base64;
