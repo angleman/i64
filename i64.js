@@ -327,6 +327,7 @@ i64.prototype.asGeo = function(degrees, options) {
 	if (typeof degrees == 'undefined') { // no parameter, return the geo value
 		return this._base64ToDegrees(this._value, options);
 	} else { // assign the degrees value
+    degrees = (degrees.latitude) ? degrees.latitude : degrees; // grab one pair if object passed
 		this._value = this._degreesToBase64(degrees, options);
 		return this;
 	}
