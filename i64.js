@@ -52,10 +52,10 @@ var default_alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRST
 // based on: http://stackoverflow.com/questions/6213227/fastest-way-to-convert-a-number-to-radix-64-in-javascript
 i64.prototype._intTo64Fast = function(number) {
     if (isNaN(Number(number)) || number === null || number === Number.POSITIVE_INFINITY) {
-        throw new I64IntegerError("Invalid _intTo64fast() Number");
+        throw new I64IntegerError("Invalid _intTo64fast() Number '" + number + "'");
     }
     if (number < 0) {
-        throw new I64IntegerError("Invalid _intTo64fast() Negative Number");
+        throw new I64IntegerError("Invalid _intTo64fast() Negative Number '" + number + "'");
     }
 
     var rixit                          // like 'digit', only in some non-decimal radix 
@@ -79,7 +79,7 @@ i64.prototype._intTo64Fast = function(number) {
 // based on: http://stackoverflow.com/questions/6213227/fastest-way-to-convert-a-number-to-radix-64-in-javascript
 i64.prototype._toIntFast = function(i64string) {
 	if (!this.isI64(i64string)) {
-		throw new I64StringError("Invalid _toIntFast() Int64String: '" + i64string + '"');
+		throw new I64StringError("Invalid _toIntFast() Int64String: '" + i64string + "'");
 	}
     var result = 0
       , alphabet = this._config.alphabet
@@ -259,7 +259,7 @@ i64.prototype.valueOf = function(i64string) {
 		return this._value;
 	} else {
 		if (!this.isI64(i64string)) {
-			throw new I64StringError("Invalid valueOf() Int64String");
+			throw new I64StringError("Invalid valueOf() Int64String '" + i64string + "'");
 		}
 		this._value = i64string;
 		return this;
