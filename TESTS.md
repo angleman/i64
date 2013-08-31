@@ -138,7 +138,7 @@ result.should.equal('38tkcf00');
 
 <a name="asdate-current-date"></a>
 ## current date
- returns "1377907301220".
+ returns "1377909560553".
 
 ```js
 result = a64.asDate(date);
@@ -153,9 +153,28 @@ result.should.equal(date.valueOf());
 # asGeo()
 <a name="asgeo-select-latitude"></a>
 ## select latitude
+returns "j".
+
+```js
+a64.config({ geo_precision: 1 });
+result = a64.asGeo(-71.5653);
+should.exist(result);
+result = a64.valueOf();
+result.should.equal('j');
+```
+
+returns approximately -71.5653.
+
+```js
+result = a64.asGeo();
+should.exist(result);
+result.should.equal(-73.125);
+```
+
 returns "ji".
 
 ```js
+a64.config({ geo_precision: 2 });
 result = a64.asGeo(-71.5653);
 should.exist(result);
 result = a64.valueOf();
@@ -168,6 +187,60 @@ returns approximately -71.5653.
 result = a64.asGeo();
 should.exist(result);
 result.should.equal(-71.54296875);
+```
+
+returns "jhM".
+
+```js
+a64.config({ geo_precision: 3 });
+result = a64.asGeo(-71.5653);
+should.exist(result);
+result = a64.valueOf();
+result.should.equal('jhM');
+```
+
+returns approximately -71.5653.
+
+```js
+result = a64.asGeo();
+should.exist(result);
+result.should.equal(-71.56494140625);
+```
+
+returns "jhLL".
+
+```js
+a64.config({ geo_precision: 4 });
+result = a64.asGeo(-71.5653);
+should.exist(result);
+result = a64.valueOf();
+result.should.equal('jhLL');
+```
+
+returns approximately -71.5653.
+
+```js
+result = a64.asGeo();
+should.exist(result);
+result.should.equal(-71.56530618667603);
+```
+
+returns "jhLLi".
+
+```js
+a64.config({ geo_precision: 5 });
+result = a64.asGeo(-71.5653);
+should.exist(result);
+result = a64.valueOf();
+result.should.equal('jhLLi');
+```
+
+returns approximately -71.5653.
+
+```js
+result = a64.asGeo();
+should.exist(result);
+result.should.equal(-71.56530015170574);
 ```
 
 <a name="asgeojson"></a>
@@ -316,7 +389,7 @@ result.should.equal('92937450274902858');
 # asMicrotime()
 <a name="asmicrotime-microtimenowstruct"></a>
 ## microtime.nowStruct()
-preserved date returns "1377907301".
+preserved date returns "1377909560".
 
 ```js
 should.exist(micro);
@@ -329,7 +402,7 @@ result.length.should.equal(2);
 result[0].should.equal(micro[0]);
 ```
 
-preserved microseconds returns "226146".
+preserved microseconds returns "559717".
 
 ```js
 result[1].should.equal(micro[1]);
@@ -337,7 +410,7 @@ result[1].should.equal(micro[1]);
 
 <a name="asmicrotime-microtimenowdouble"></a>
 ## microtime.nowDouble()
-preserved date returns "1377907301".
+preserved date returns "1377909560".
 
 ```js
 should.exist(micro);
@@ -350,7 +423,7 @@ result.length.should.equal(2);
 result[0].should.equal(date);
 ```
 
-preserved microseconds returns "226336".
+preserved microseconds returns "559901".
 
 ```js
 result[1].should.equal(microseconds);
@@ -358,7 +431,7 @@ result[1].should.equal(microseconds);
 
 <a name="asmicrotime-microtimenow"></a>
 ## microtime.now()
-preserved date returns "1377907301".
+preserved date returns "1377909560".
 
 ```js
 should.exist(micro);
@@ -371,7 +444,7 @@ result.length.should.equal(2);
 result[0].should.equal(date);
 ```
 
-preserved microseconds returns "226535".
+preserved microseconds returns "560099".
 
 ```js
 result[1].should.equal(microseconds);
