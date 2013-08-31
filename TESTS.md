@@ -15,8 +15,8 @@
      - [current date](#date-current-date)
    - [degree()](#degree)
      - [select latitude](#degree-select-latitude)
-   - [geoJson()](#geojson)
-     - [select latitude](#geojson-select-latitude)
+   - [geo()](#geo)
+     - [select latitude](#geo-select-latitude)
    - [geoSet()](#geoset)
      - [select latitude](#geoset-select-latitude)
    - [hex()](#hex)
@@ -164,7 +164,7 @@ result.should.equal('38tkcf00');
 
 <a name="date-current-date"></a>
 ## current date
- returns "1377949062887".
+ returns "1377949347906".
 
 ```js
 result = a64.date(date);
@@ -269,14 +269,14 @@ should.exist(result);
 result.should.equal(-71.56530015170574);
 ```
 
-<a name="geojson"></a>
-# geoJson()
-<a name="geojson-select-latitude"></a>
+<a name="geo"></a>
+# geo()
+<a name="geo-select-latitude"></a>
 ## select latitude
 returns "DKji".
 
 ```js
-result = a64.geoJson({latitude: 43.4108, longitude:-71.5653});
+result = a64.geo({latitude: 43.4108, longitude:-71.5653});
 should.exist(result);
 result = a64.valueOf();
 result.should.equal('DKji');
@@ -285,7 +285,7 @@ result.should.equal('DKji');
 returns approximately 43.4108, -71.5653.
 
 ```js
-result = a64.geoJson();
+result = a64.geo();
 should.exist(result);
 result.should.have.keys('latitude','longitude');
 result.latitude.should.equal(43.41796875);
@@ -487,7 +487,7 @@ result.should.equal(true);
 # microtime()
 <a name="microtime-microtimenowstruct"></a>
 ## microtime.nowStruct()
-preserved date returns "1377949062".
+preserved date returns "1377949347".
 
 ```js
 should.exist(micro);
@@ -500,7 +500,7 @@ result.length.should.equal(2);
 result[0].should.equal(micro[0]);
 ```
 
-preserved microseconds returns "894317".
+preserved microseconds returns "913458".
 
 ```js
 result[1].should.equal(micro[1]);
@@ -508,7 +508,7 @@ result[1].should.equal(micro[1]);
 
 <a name="microtime-microtimenowdouble"></a>
 ## microtime.nowDouble()
-preserved date returns "1377949062".
+preserved date returns "1377949347".
 
 ```js
 should.exist(micro);
@@ -521,7 +521,7 @@ result.length.should.equal(2);
 result[0].should.equal(date);
 ```
 
-preserved microseconds returns "894498".
+preserved microseconds returns "913639".
 
 ```js
 result[1].should.equal(microseconds);
@@ -529,7 +529,7 @@ result[1].should.equal(microseconds);
 
 <a name="microtime-microtimenow"></a>
 ## microtime.now()
-preserved date returns "1377949062".
+preserved date returns "1377949347".
 
 ```js
 should.exist(micro);
@@ -542,7 +542,7 @@ result.length.should.equal(2);
 result[0].should.equal(date);
 ```
 
-preserved microseconds returns "894695".
+preserved microseconds returns "913839".
 
 ```js
 result[1].should.equal(microseconds);
