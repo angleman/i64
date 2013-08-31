@@ -19,7 +19,7 @@ i64.isI64(int64_string)           // true if a valid int64_string is passed
 i64.asInt([integer])              // get/set value as Integer
 i64.asHex([hex_string])           // get/set value as Hexidecimal
 i64.asDate([date])                // get/set value as Date
-i64.asMicrotime([microtime])      // get/set value as [Microtime](https://github.com/wadey/node-microtime)
+i64.asMicrotime([microtime])      // get/set value as Microtime (wadey/node-microtime)
 i64.asGeo([degrees])              // get/set value as Degrees (+/- 180.0)
 i64.asGeoSet([geoset])            // get/set value as [longitude, latitude]
 i64.asGeoJson([geojson])          // get/set value as {longitude: value, latitude: value}
