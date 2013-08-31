@@ -9,6 +9,7 @@
      - [base64 string passed](#_tointfast-base64-string-passed)
    - [asDate()](#asdate)
      - [select date](#asdate-select-date)
+     - [current date](#asdate-current-date)
    - [asGeo()](#asgeo)
      - [select latitude](#asgeo-select-latitude)
    - [asGeoJson()](#asgeojson)
@@ -135,13 +136,17 @@ result = a64.valueOf();
 result.should.equal('38tkcf00');
 ```
 
-returns "2013-09-30T02:12:15.000Z".
+<a name="asdate-current-date"></a>
+## current date
+ returns "1377907301220".
 
 ```js
+result = a64.asDate(date);
+should.exist(result);
 result = a64.asDate();
 should.exist(result);
-result = result.toISOString();
-result.should.equal('2013-09-30T02:12:15.000Z');
+result = result.valueOf()
+result.should.equal(date.valueOf());
 ```
 
 <a name="asgeo"></a>
@@ -311,7 +316,7 @@ result.should.equal('92937450274902858');
 # asMicrotime()
 <a name="asmicrotime-microtimenowstruct"></a>
 ## microtime.nowStruct()
-preserved date returns "1377906220".
+preserved date returns "1377907301".
 
 ```js
 should.exist(micro);
@@ -324,7 +329,7 @@ result.length.should.equal(2);
 result[0].should.equal(micro[0]);
 ```
 
-preserved microseconds returns "677644".
+preserved microseconds returns "226146".
 
 ```js
 result[1].should.equal(micro[1]);
@@ -332,7 +337,7 @@ result[1].should.equal(micro[1]);
 
 <a name="asmicrotime-microtimenowdouble"></a>
 ## microtime.nowDouble()
-preserved date returns "1377906220".
+preserved date returns "1377907301".
 
 ```js
 should.exist(micro);
@@ -345,7 +350,7 @@ result.length.should.equal(2);
 result[0].should.equal(date);
 ```
 
-preserved microseconds returns "677848".
+preserved microseconds returns "226336".
 
 ```js
 result[1].should.equal(microseconds);
@@ -353,7 +358,7 @@ result[1].should.equal(microseconds);
 
 <a name="asmicrotime-microtimenow"></a>
 ## microtime.now()
-preserved date returns "1377906220".
+preserved date returns "1377907301".
 
 ```js
 should.exist(micro);
@@ -366,7 +371,7 @@ result.length.should.equal(2);
 result[0].should.equal(date);
 ```
 
-preserved microseconds returns "678042".
+preserved microseconds returns "226535".
 
 ```js
 result[1].should.equal(microseconds);
