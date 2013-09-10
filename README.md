@@ -63,3 +63,10 @@ i64.geoSet(point).valueOf()           // DKji
 ```
 
 ## License: MIT
+
+Dependencies:
+
+[![int-encoder](http://badgr.co/mit/int-encoder.png?bg=%234ed50e)](https://github.com/alanclarke/int-encoder) [![validator](http://badgr.co/mit/validator.png?bg=%234ed50e)](http://github.com/chriso/node-validator)
+[![microtime](http://badgr.co/mit*/microtime.png?bg=%234ed50e)](https://github.com/wadey/node-microtime)
+
+
