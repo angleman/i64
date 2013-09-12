@@ -1,4 +1,4 @@
-# i64 [![NPM version](https://badge.fury.io/js/i64.png?branch=master)](https://npmjs.org/package/i64) [![Build Status](https://travis-ci.org/angleman/i64.png?branch=master)](https://travis-ci.org/angleman/i64) [![Dependency Status](https://gemnasium.com/angleman/i64.png?branch=master)](https://gemnasium.com/angleman/i64) [![License](http://badgr.co/use/MIT.png?bg=%234ed50e)](http://opensource.org/licenses/MIT)
+# i64 [![NPM version](https://badge.fury.io/js/i64.png?branch=master)](https://npmjs.org/package/i64) [![Build Status](https://travis-ci.org/angleman/i64.png?branch=master)](https://travis-ci.org/angleman/i64) [![Dependency Status](https://gemnasium.com/angleman/i64.png?branch=master)](https://gemnasium.com/angleman/i64) [![License](http://badgr.co/use/MIT.png?bg=%234ed50e)](#licensemit)
 
 URL safe Base64 Integer Strings (BIS) and conversion tools. Supports both fast conversions for regular integers and large integer strings (via [alan/clarke/int-encoder](http://github.com/alanclarke/int-encoder)). Assists with compression as fewer base 64 digits are needed to represent larger integers than base 10 digits. Unlike RFC-3548 Base 64 encodings, readability of BIS is improved for small integers by using an alphabet that extends base-converter in PHP and following node [base-converter](https://github.com/naholyr/node-base-converter).
 
@@ -66,7 +66,9 @@ i64.geoSet(point).valueOf()           // DKji
 
 Dependencies: 
 
-[![int-encoder](http://badgr.co/mit/int-encoder.png?bg=%234ed50e)](https://github.com/alanclarke/int-encoder) [![validator](http://badgr.co/mit/validator.png?bg=%234ed50e)](http://github.com/chriso/node-validator)
-[![microtime](http://badgr.co/mit*/microtime.png?bg=%234ed50e)](https://github.com/wadey/node-microtime)
+[![int-encoder](http://badgr.co/int-encoder/MIT.png?bg=%23339e00 "int-encoder@0.1.4 Massachusetts Institute of Technology")](https://github.com/alanclarke/int-encoder)
+
+[![validator](http://badgr.co/validator/MIT.png?bg=%23339e00 "validator@1.5.1 Massachusetts Institute of Technology")](http://github.com/chriso/node-validator)
+[![microtime](http://badgr.co/microtime/MIT*.png?bg=%23339e00 "microtime@0.3.3 Massachusetts Institute of Technology (it seems based on text scan)")](https://github.com/wadey/node-microtime)
 
 
